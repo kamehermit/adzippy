@@ -31,13 +31,21 @@ class LoginProxy extends Controller
      * @param string $email
      * @param string $password
      */
-    public function attemptLogin($email, $password){
-        $user = $this->userRepository->where('email', $email)->first();
+    public function attemptLogin($phone, $password){
+        $user = $this->userRepository->where('phone', $phone)->first();
         if (!is_null($user)) {
             return $this->proxy('password', [
-                'username' => $email,
+                'username' => $phone,
                 'password' => $password
             ]);
+        }
+        else{
+        	return [
+        		'status' => 'error',
+            	'status_code' => 401,
+            	'message' => 'The user credentials were incorrect.',
+            	'data' => ''
+            ];
         }
         //throw new \InvalidCredentialsException();
     }
@@ -45,8 +53,8 @@ class LoginProxy extends Controller
      * Attempt to refresh the access token used a refresh token that 
      * has been saved in a cookie
      */
-    public function attemptRefresh(){
-        $refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
+    public function attemptRefresh($refreshToken){
+        //$refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
         return $this->proxy('refresh_token', [
             'refresh_token' => $refreshToken
         ]);
@@ -64,29 +72,35 @@ class LoginProxy extends Controller
             'client_secret' => env('PASSWORD_CLIENT_SECRET'),
             'grant_type'    => $grantType
         ]);
+
+        try {
         //$response = $this->apiConsumer->post('/oauth/token', $data);
-        $response = $this->apiConsumer->post(sprintf('%s/oauth/token', $config->get('app.url')), [
+        	$response = $this->apiConsumer->post(sprintf('%s/oauth/token', $config->get('app.url')), [
                 'form_params' => $data
             ]);
-        if (!$response) {
-            throw new \InvalidCredentialsException();
+            $data = json_decode($response->getBody());
+	        $token_data = [
+	        	'access_token' => $data->access_token,
+	        	'expires_in' => $data->expires_in,
+	            'refresh_token' => $data->refresh_token	
+	        ];
+	        return [
+	        	'status' => 'success',
+	        	'status_code' => 200,
+	        	'message' => 'Login Successful',
+	        	'data' => $token_data
+	            
+	        ];
+        }catch(\GuzzleHttp\Exception\BadResponseException $e){
+        	$response = json_decode($e->getResponse()->getBody());
+        	return [
+        		'status' => 'error',
+        		'status_code' => $e->getCode(),
+        		'message' => $response->message,
+        		'data' => ''
+        	];
         }
-        $data = json_decode($response->getBody());
-        // Create a refresh token cookie
-        // $this->cookie->queue(
-        //     self::REFRESH_TOKEN,
-        //     $data->refresh_token,
-        //     864000, // 10 days
-        //     null,
-        //     null,
-        //     false,
-        //     true // HttpOnly
-        // );
-        return [
-            'access_token' => $data->access_token,
-            'refresh_token' => $data->refresh_token,
-            'expires_in' => $data->expires_in
-        ];
+	        
     }
     /**
      * Logs out the user. We revoke access token and refresh token. 
@@ -101,6 +115,10 @@ class LoginProxy extends Controller
                 'revoked' => true
             ]);
         $accessToken->revoke();
-        $this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
+
+        return [
+        	''
+        ];
+        //$this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
     }
 }
