@@ -164,3 +164,8 @@
 127.0.0.1 - - [11/Jul/2017:08:36:48 +0530] "POST /api/v1/driver/auth/logout HTTP/1.1" 200 5 "-" "PostmanRuntime/3.0.11-hotfix.2"
 127.0.0.1 - - [11/Jul/2017:09:17:15 +0530] "GET /api/user HTTP/1.1" 401 39 "-" "PostmanRuntime/3.0.11-hotfix.2"
 127.0.0.1 - - [11/Jul/2017:09:17:31 +0530] "POST /api/v1/driver/auth/logout HTTP/1.1" 200 5 "-" "PostmanRuntime/3.0.11-hotfix.2"
+127.0.0.1 - - [12/Jul/2017:00:58:21 +0530] "POST /api/v1/driver/auth/logout HTTP/1.1" 200 5 "-" "PostmanRuntime/3.0.11-hotfix.2"
+127.0.0.1 - - [12/Jul/2017:00:58:33 +0530] "POST /oauth/token HTTP/1.1" 200 1867 "-" "GuzzleHttp/6.2.1 curl/7.54.1 PHP/7.1.6"
+127.0.0.1 - - [12/Jul/2017:00:58:33 +0530] "POST /api/v1/driver/auth/login HTTP/1.1" 200 1920 "-" "PostmanRuntime/3.0.11-hotfix.2"
+127.0.0.1 - - [12/Jul/2017:01:00:09 +0530] "POST /oauth/token HTTP/1.1" 200 1867 "-" "GuzzleHttp/6.2.1 curl/7.54.1 PHP/7.1.6"
+127.0.0.1 - - [12/Jul/2017:01:00:09 +0530] "POST /api/v1/driver/auth/register HTTP/1.1" 200 1933 "-" "PostmanRuntime/3.0.11-hotfix.2"

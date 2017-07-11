@@ -97,7 +97,7 @@ class AuthController extends Controller
             $check = \Validator::make($request->all(), [
                 'phone' => 'required|unique:users|max:10|min:10',
                 'name' => 'required',
-                'email' => 'required|email|unique:users',
+                //'email' => 'required|email|unique:users',
                 'password' => 'required',
             ]);
             if($check->fails()){
@@ -108,10 +108,10 @@ class AuthController extends Controller
                     'data' => ''
                 ];
             }
-            $data = $request->only('name','email','phone','password');
+            $data = $request->only('name','phone','password');
             $driver = new User();
             $driver->name = $data['name'];
-            $driver->email = $data['email'];
+            //$driver->email = $data['email'];
             $driver->phone = $data['phone'];
             $driver->password = bcrypt($data['password']);
             $driver->save();
