@@ -20,10 +20,10 @@ class LoginProxy extends Controller
     public function __construct(Application $app, User $userRepository) {
         $this->userRepository = $userRepository;
         $this->apiConsumer = new Client();//$app->make('apiconsumer');
-        $this->auth = new Client();//$app->make('auth');
-        $this->cookie = new Client();//$app->make('cookie');
-        $this->db = new Client();//$app->make('db');
-        $this->request = new Client();//$app->make('request');
+        $this->auth = $app->make('auth');
+        $this->cookie = $app->make('cookie');
+        $this->db = $app->make('db');
+        $this->request = $app->make('request');
     }
     /**
      * Attempt to create an access token using user credentials
@@ -107,18 +107,26 @@ class LoginProxy extends Controller
      * Also instruct the client to forget the refresh cookie.
      */
     public function logout(){
-        $accessToken = $this->auth->user()->token();
-        $refreshToken = $this->db
-            ->table('oauth_refresh_tokens')
-            ->where('access_token_id', $accessToken->id)
-            ->update([
-                'revoked' => true
-            ]);
-        $accessToken->revoke();
+    	try{
+    		$accessToken = $this->auth->user()->token();
+        	$refreshToken = $this->db
+            	->table('oauth_refresh_tokens')
+            	->where('access_token_id', $accessToken->id)
+            	->update([
+                	'revoked' => true
+            	]);
+        	$accessToken->revoke();
+        	return [
+        		'status' => 'success',
+        		'status_code' => 200,
+        		'message' => 'Token destroyed Successfully',
+        		'data' => ''
+        	];
+    	}
+    	catch(Exception $e){
 
-        return [
-        	''
-        ];
+    	}
+        
         //$this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
     }
 }

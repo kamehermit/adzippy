@@ -65,10 +65,27 @@ class AuthController extends Controller
         
     }
 
-    public function logout(){
+    public function logout(Request $request){
         try{
-            $response = $this->loginProxy->logout();
-            return $response;
+            #$accessToken = $request->get('access_token');
+            #$response = $this->loginProxy->logout();
+            #return $response;
+            $var = $request->user();
+            return $var;
+            /*$accessToken = $request->user()->token();
+            $refreshToken = \DB::
+                table('oauth_refresh_tokens')
+                ->where('access_token_id', $accessToken->id)
+                ->update([
+                    'revoked' => true
+                ]);
+            $accessToken->revoke();
+            return [
+                'status' => 'success',
+                'status_code' => 200,
+                'message' => 'Token destroyed Successfully',
+                'data' => ''
+            ];*/
         }
         catch(Exception $e){
             return $this->error;
@@ -99,12 +116,14 @@ class AuthController extends Controller
             $driver->password = bcrypt($data['password']);
             $driver->save();
             $driver->roles()->attach($this->role_driver);
+
+            $response = $this->loginProxy->attemptLogin($data['phone'], $data['password']);
             if($driver){
                 return [
                     'status' => 'success',
                     'status_code' => 201,
                     'message' => 'User successfully registered.',
-                    'data' => ''
+                    'data' => $response['data']
                 ];
             }
             else{
