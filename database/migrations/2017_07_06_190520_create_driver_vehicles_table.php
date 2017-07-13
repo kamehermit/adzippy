@@ -18,9 +18,8 @@ class CreateDriverVehiclesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('vehicle_number');
             $table->string('registration_number');
-            $table->string('pic1');
-            $table->string('pic2');
-            $table->string('pic3');
+            $table->string('vehicle_model');
+            $table->string('vehicle_make');
             $table->timestamps();
         });
         Schema::table('driver_vehicles',function($table){

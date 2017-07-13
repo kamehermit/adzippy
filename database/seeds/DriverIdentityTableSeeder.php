@@ -11,7 +11,7 @@ class DriverIdentityTableSeeder extends Seeder
      */
     public function run()
     {
-        $data =	['user_id' => 1,'aadhaar_number' => '110476893434124','pan' => 'JHD09345'];
+        $data =	['user_id' => 1,'aadhar_number' => '110476893434124','pan' => 'JHD09345'];
         DB::table('driver_identities')->insert($data);
     }
 }

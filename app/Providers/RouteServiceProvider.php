@@ -15,7 +15,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-    protected $drivernamespace = 'App\Http\Controllers\Driver\Auth';
+    protected $driverauthnamespace = 'App\Http\Controllers\Driver\Auth';
+    protected $drivernamespace = 'App\Http\Controllers\Driver';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -40,7 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapPublicDriverApiRoutes();
+        $this->mapPublicDriverAuthRoutes();
+        $this->mapProtectedDriverAuthRoutes();
         $this->mapProtectedDriverApiRoutes();
 
         //
@@ -78,22 +80,29 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * All OAuth public routes under the Driver Domain
      */
-    protected function mapPublicDriverApiRoutes()
+    protected function mapPublicDriverAuthRoutes()
     {
         Route::prefix('api/v1/driver/auth')
              ->middleware('api')
-             ->namespace($this->drivernamespace)
+             ->namespace($this->driverauthnamespace)
              ->group(base_path('routes/Driver/Auth/public_routes.php'));
     }
 
     /**
      * All OAuth protected routes under the Driver Domain
      */
-    protected function mapProtectedDriverApiRoutes()
+    protected function mapProtectedDriverAuthRoutes()
     {
         Route::prefix('api/v1/driver/auth')
              ->middleware('api')
-             ->namespace($this->drivernamespace)
+             ->namespace($this->driverauthnamespace)
              ->group(base_path('routes/Driver/Auth/protected_routes.php'));
+    }
+
+    protected function mapProtectedDriverApiRoutes(){
+        Route::prefix('api/v1/driver/')
+             ->middleware(['auth:api','user.verify'])
+             ->namespace($this->drivernamespace)
+             ->group(base_path('routes/Driver/protected_routes.php'));
     }
 }

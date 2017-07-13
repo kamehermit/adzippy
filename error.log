@@ -1,0 +1,18 @@
+2017/07/12 11:14:55 [error] 385#385: *117 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/srv/http/adzippy/routes/driver/protected_routes.php): failed to open stream: No such file or directory in /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php:329
+Stack trace:
+#0 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(329): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/srv/ht...', '/srv/http/adzip...', 329, Array)
+#1 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(329): require()
+#2 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(285): Illuminate\Routing\Router->loadRoutes('/srv/http/adzip...')
+#3 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(104): Illuminate\Routing\Router->group(Array, '/srv/http/adzip...')
+#4 /srv/http/adzippy/app/Providers/RouteServiceProvider.php(105): Illuminate\Routing\RouteRegistrar->group('/srv/http/adzip...')
+#5 /srv/http/adzippy/app/...
+PHP message: PHP Fatal error:  Illuminate\Routing\Router::loadRoutes(): Failed opening required '/srv/http/adzippy/routes/driver/protected_routes.php' (include_path='.:') in /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php on line 329" while reading response header from upstream, client: 127.0.0.1, server: adzippy.dev, request: "GET /api/driver/user HTTP/1.1", upstream: "fastcgi://unix:/run/php-fpm/php-fpm.sock:", host: "adzippy.dev"
+2017/07/12 11:15:21 [error] 385#385: *117 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/srv/http/adzippy/routes/driver/protected_routes.php): failed to open stream: No such file or directory in /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php:329
+Stack trace:
+#0 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(329): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/srv/ht...', '/srv/http/adzip...', 329, Array)
+#1 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(329): require()
+#2 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php(285): Illuminate\Routing\Router->loadRoutes('/srv/http/adzip...')
+#3 /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(104): Illuminate\Routing\Router->group(Array, '/srv/http/adzip...')
+#4 /srv/http/adzippy/app/Providers/RouteServiceProvider.php(105): Illuminate\Routing\RouteRegistrar->group('/srv/http/adzip...')
+#5 /srv/http/adzippy/app/...
+PHP message: PHP Fatal error:  Illuminate\Routing\Router::loadRoutes(): Failed opening required '/srv/http/adzippy/routes/driver/protected_routes.php' (include_path='.:') in /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php on line 329" while reading response header from upstream, client: 127.0.0.1, server: adzippy.dev, request: "GET /api/driver/user HTTP/1.1", upstream: "fastcgi://unix:/run/php-fpm/php-fpm.sock:", host: "adzippy.dev"

@@ -17,7 +17,8 @@ class CreateDriverPaymentsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('bank_name');
-            $table->string('account_name');
+            $table->string('branch_code');
+            $table->string('account_holder_name');
             $table->string('account_number');
             $table->string('ifsc');
             $table->timestamps();

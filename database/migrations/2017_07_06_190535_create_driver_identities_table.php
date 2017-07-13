@@ -16,7 +16,7 @@ class CreateDriverIdentitiesTable extends Migration
         Schema::create('driver_identities', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('aadhaar_number');
+            $table->string('aadhar_number');
             $table->string('pan');
             $table->timestamps();
         });

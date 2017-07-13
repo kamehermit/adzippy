@@ -11,7 +11,7 @@ class DriverVehicleTableSeeder extends Seeder
      */
     public function run()
     {
-        $data =	['user_id' => 1,'vehicle_number' => 'DL5A3456','registration_number' => '09876674','pic1' => 'photo1.jpg','pic2' => 'photo2.jpg','pic3' => 'photo3.jpg'];
+        $data =	['user_id' => 1,'vehicle_number' => 'DL5A3456','registration_number' => '09876674','vehicle_make' => 'Nissan','vehicle_model' => 'Datsun'];
         DB::table('driver_vehicles')->insert($data);
     }
 }
