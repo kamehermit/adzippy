@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Driver\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Driver\Auth\LoginProxy;
+use App\Http\Controllers\ApiResponse;
 use App\Http\Requests\LoginRequest;
 use GuzzleHttp\Client;
 use App\User;
@@ -13,22 +14,23 @@ use App\Role;
 class AuthController extends Controller
 {
     private $loginProxy;
-    private $error;
+    private $apiResponse;
     private $role_driver;
     private $otp_digits;
     private $MSG91_AUTHKEY;
     private $MSG91_SENDERID;
     private $send_request;
     private $msg;
+    private $json_data;
 
-    public function __construct(LoginProxy $loginProxy){
+    public function __construct(LoginProxy $loginProxy,ApiResponse $apiResponse){
         $this->loginProxy = $loginProxy;
-        $this->error = [
-                'status' => 'error',
-                'status_code' => 500,
-                'message' => 'Internal server error',
-                'data' => ''
-            ];
+        $this->apiResponse = $apiResponse;
+        $this->json_data = [
+                    'access_token' => '',
+                    'expires_in' => '',
+                    'refresh_token' => '',
+                ];
         $this->role_driver = Role::where('name', 'driver')->first();
         $this->otp_digits = 6;
         $this->MSG91_AUTHKEY = env('MSG91_APP_KEY');
@@ -47,12 +49,10 @@ class AuthController extends Controller
             ]);
             if($check->fails()){
                 $errors = $check->errors();
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $errors,
-                    'data' => ''
-                ];
+                foreach ($errors->all() as $message) {
+                    $this->msg .= $message.';';
+                }
+                return $this->apiResponse->sendResponse(400,$this->msg,$this->json_data);
             }
             $phone = $request->get('phone');
             $password = $request->get('password');
@@ -61,7 +61,7 @@ class AuthController extends Controller
             return $response;
         }
         catch(Exception $e){
-            return $this->error;
+            return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
         }
     }
     
@@ -72,7 +72,7 @@ class AuthController extends Controller
             return $response;
         }
         catch(Exception $e){
-            return $this->error;
+            return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
         }
         
     }
@@ -100,7 +100,7 @@ class AuthController extends Controller
             ];*/
         }
         catch(Exception $e){
-            return $this->error;
+            return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
         }
     }
 
@@ -109,7 +109,6 @@ class AuthController extends Controller
             $check = \Validator::make($request->all(), [
                 'phone' => 'required|unique:users|max:10|min:10',
                 'name' => 'required',
-                //'email' => 'required|email|unique:users',
                 'password' => 'required',
             ]);
             if($check->fails()){
@@ -117,17 +116,11 @@ class AuthController extends Controller
                 foreach ($errors->all() as $message) {
                     $this->msg .= $message.';';
                 }
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,$this->json_data);
             }
             $data = $request->only('name','phone','password');
             $driver = new User();
             $driver->name = $data['name'];
-            //$driver->email = $data['email'];
             $driver->phone = $data['phone'];
             $driver->password = bcrypt($data['password']);
             $driver->save();
@@ -135,19 +128,14 @@ class AuthController extends Controller
 
             $response = $this->loginProxy->attemptLogin($data['phone'], $data['password']);
             if($driver){
-                return [
-                    'status' => 'success',
-                    'status_code' => 201,
-                    'message' => 'User successfully registered.',
-                    'data' => $response['data']
-                ];
+                return $this->apiResponse->sendResponse(201,'User successfully registered.',$response['data']);
             }
             else{
-                return $this->error;
+                return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
             }
         }
         catch(Exception $e){
-            return $this->error;
+            return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
         }
     }
 
@@ -164,25 +152,20 @@ class AuthController extends Controller
                 'type' => $data->type
             ];
             if($data->type == 'success'){
-                return [
-                    'status' => 'success',
-                    'status_code' => 200,
-                    'message' => 'OTP sent successfully',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(200,'OTP sent successfully',$new_data);
             }
             else{
-                return [
-                    'status' => 'error',
-                    'status_code' => 500,
-                    'message' => 'unable to send OTP',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(500,'unable to send OTP',$new_data);
             }
 
         }
         catch(Exception $e){
-            return $this->error;
+            $new_data = [
+                'phone'     => '',
+                'message' => '',
+                'type' => ''
+            ];
+            return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
         }
     }
 
@@ -199,28 +182,21 @@ class AuthController extends Controller
             ];
             if($data->type == 'success'){
                 $driver = User::where(['phone'=>$phone])->update(['verified'=>1]);
-                //$driver->verified = 1;
-                //$driver->save();
-                return [
-                    'status' => 'success',
-                    'status_code' => 200,
-                    'message' => 'OTP verified successfully',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(200,'OTP verified successfully',$new_data);
             }
             else{
-                return [
-                    'status' => 'error',
-                    'status_code' => 500,
-                    'message' => 'unable to send OTP',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(500,'unable to send OTP',$new_data);
             }
 
 
         }
         catch(Exception $e){
-            return $this->error;
+            $new_data = [
+                'phone'     => '',
+                'message' => '',
+                'type' => ''
+            ];
+            return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
         }
     }
 
@@ -236,25 +212,20 @@ class AuthController extends Controller
                 'type' => $data->type
             ];
             if($data->type == 'success'){
-                return [
-                    'status' => 'success',
-                    'status_code' => 200,
-                    'message' => 'OTP sent successfully',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(200,'OTP sent successfully',$new_data);
             }
             else{
-                return [
-                    'status' => 'error',
-                    'status_code' => 500,
-                    'message' => 'unable to send OTP',
-                    'data' => $new_data
-                ];
+                return $this->apiResponse->sendResponse(500,'unable to send OTP',$new_data);
             }
 
         }
         catch(Exception $e){
-            return $this->error;
+            $new_data = [
+                'phone'     => '',
+                'message' => '',
+                'type' => ''
+            ];
+            return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
         }
     }
 
@@ -273,29 +244,29 @@ class AuthController extends Controller
                     'type' => $data->type
                 ];
                 if($data->type == 'success'){
-                    return [
-                        'status' => 'success',
-                        'status_code' => 200,
-                        'message' => 'Phone number updated. OTP sent successfully',
-                        'data' => $new_data
-                    ];
+                    return $this->apiResponse->sendResponse(200,'Phone number updated. OTP sent successfully',$new_data);
                 }
                 else{
-                    return [
-                        'status' => 'error',
-                        'status_code' => 500,
-                        'message' => 'unable to update phone.',
-                        'data' => $new_data
-                    ];
+                    return $this->apiResponse->sendResponse(500,'unable to send OTP.',$new_data);
                 }
             }
             else{
-                return $this->error;
+                $new_data = [
+                    'phone'     => '',
+                    'message' => '',
+                    'type' => ''
+                ];
+                return $this->apiResponse->sendResponse(500,'unable to update phone.',$new_data);
             }
 
         }
         catch(Exception $e){
-            return $this->error;
+            $new_data = [
+                'phone'     => '',
+                'message' => '',
+                'type' => ''
+            ];
+            return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
         }
     }
 }

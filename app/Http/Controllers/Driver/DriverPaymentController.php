@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Driver;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiResponse;
 use App\DriverPayment;
 
 class DriverPaymentController extends Controller
 {
-	private $error;
     private $msg;
-	//private $id;
+	private $apiResponse;
+    private $json_data;
 
-	public function __construct(Request $request){
-        $this->error = [
-                'status' => 'error',
-                'status_code' => 500,
-                'message' => 'Internal server error',
-                'data' => ''
-            ];
+	public function __construct(ApiResponse $apiResponse){
+        $this->apiResponse=$apiResponse;
         $this->msg="";
-        //$this->id = $request->user()->id;
     }
 
     public function get_payment(Request $request){
@@ -29,17 +24,19 @@ class DriverPaymentController extends Controller
     		$response = DriverPayment::where(['user_id'=>$id])->get(['account_number','account_holder_name','bank_name','ifsc','branch_code'])->first();
 
     		if($response){
-    			return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values fetched',
-    				'data' => $response
-    			];
+                return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
-    		return $this->error;
+            $this->json_data = [
+                'account_number' => '',
+                'account_holder_name' => '',
+                'bank_name' => '',
+                'ifsc' => '',
+                'branch_code' => ''
+            ]);
+            return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.',$this->json_data);
     	}
     }
 
@@ -59,12 +56,7 @@ class DriverPaymentController extends Controller
                 foreach ($errors->all() as $message) {
                     $this->msg .= $message.';';
                 }
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
             }
             $payment = new DriverPayment();
             $payment->user_id = $id;
@@ -74,39 +66,26 @@ class DriverPaymentController extends Controller
     		$payment->ifsc = $data['ifsc'];
     		$payment->branch_code = $data['branch_code'];
     		if($payment->save()){
-    			return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values added',
-    				'data' => ''
-    			];
+                return $this->apiResponse->sendResponse(200,'All values added.','');
     		}
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'unable to add records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 
     public function update_payment(Request $request){
     	try{
-    		//return $request->all();
     		$id = $request->user()->id;
     		$payment = DriverPayment::where(['user_id'=>$id])->update($request->all());
-    		//$request = array_merge($request->all(), ['user_id' => $id]);
-    		//return $request->all()->put('user_id', $id);
     		if($payment){
-        		return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values updated',
-    				'data' => ''
-    			];
+                return $this->apiResponse->sendResponse(200,'All values updated.','');
     		}
-    		return $this->error;
+            return $this->apiResponse->sendResponse(400,'unable to update records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+            return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 }

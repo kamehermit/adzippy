@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Driver;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiResponse;
 use App\User;
 
 class DriverProfileController extends Controller
 {
-    private $error;
     private $msg;
-	//private $id;
+	private $apiResponse;
+    private $json_data;
 
-	public function __construct(Request $request){
-        $this->error = [
-                'status' => 'error',
-                'status_code' => 500,
-                'message' => 'Internal server error',
-                'data' => ''
-            ];
+	public function __construct(ApiResponse $apiResponse){
+        $this->apiResponse=$apiResponse;
         $this->msg="";
-        //$this->id = $request->user()->id;
     }
 
     public function get_profile(Request $request){
@@ -28,17 +23,17 @@ class DriverProfileController extends Controller
     		$id = $request->user()->id;
     		$response = User::where(['id'=>$id])->get(['name','phone','email'])->first();
     		if($response){
-    			return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values fetched',
-    				'data' => $response
-    			];
+    			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
-    		return $this->error;
+    		$this->json_data = [
+                'name' => '',
+                'phone' => '',
+                'email' => ''
+            ]);
+            return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.',$this->json_data);
     	}
     }
 
@@ -48,28 +43,16 @@ class DriverProfileController extends Controller
     		$id = $request->user()->id;
     		if(!$email){
                 $this->msg .= "The email field is required.;";
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
             }
     		$profile = User::where(['id'=>$id])->update(['email' => $email ]);
-    		//$request = array_merge($request->all(), ['user_id' => $id]);
-    		//return $request->all()->put('user_id', $id);
     		if($profile){
-        		return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values updated',
-    				'data' => ''
-    			];
+    			return $this->apiResponse->sendResponse(200,'All values updated','');
     		}
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'unable to update records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 
@@ -79,28 +62,18 @@ class DriverProfileController extends Controller
     		$id = $request->user()->id;
     		if(!$name){
                 $this->msg .= "The name field is required.;";
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
             }
     		$profile = User::where(['id'=>$id])->update(['name' => $name ]);
     		//$request = array_merge($request->all(), ['user_id' => $id]);
     		//return $request->all()->put('user_id', $id);
     		if($profile){
-        		return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values updated',
-    				'data' => ''
-    			];
+        		return $this->apiResponse->sendResponse(200,'All values updated','');
     		}
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'unable to update records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 
@@ -118,34 +91,19 @@ class DriverProfileController extends Controller
                 foreach ($errors->all() as $message) {
                     $this->msg .= $message.';';
                 }
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
             }
             $password = User::where(['id'=>$id])->get(['password'])->first();
             if(\Hash::check($data['current_password'],$password->password)){
             	$profile = User::where(['id'=>$id])->update(['password' => bcrypt($data['new_password']) ]);
             	if($profile){
-            		return [
-    					'status' => 'success',
-    					'status_code' => 200,
-    					'message' => 'All values updated',
-    					'data' => ''
-    				];
+            		return $this->apiResponse->sendResponse(200,'All values updated','');
             	}
             }
-            return [
-                'status' => 'error',
-                'status_code' => 401,
-                'message' => 'Incorrect password',
-                'data' => ''
-                ];
+            return $this->apiResponse->sendResponse(401,'Incorrect password.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 }

@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Driver;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiResponse;
 use App\DriverVehicle;
 
 class DriverVehicleController extends Controller
 {
-	private $error;
 	private $msg;
-	//private $id;
+    private $apiResponse;
+    private $json_data;
 
-	public function __construct(Request $request){
-        $this->error = [
-                'status' => 'error',
-                'status_code' => 500,
-                'message' => 'Internal server error',
-                'data' => ''
-            ];
+	public function __construct(ApiResponse $apiResponse){
+        $this->apiResponse=$apiResponse;
         $this->msg="";
-        //$this->id = $request->user()->id;
     }
 
     public function get_vehicle(Request $request){
@@ -29,17 +24,18 @@ class DriverVehicleController extends Controller
     		$response = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model'])->first();
 
     		if($response){
-    			return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values fetched',
-    				'data' => $response
-    			];
+    			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
-    		return $this->error;
+    		$this->json_data = [
+                'vehicle_number' => '',
+                'registration_number' => '',
+                'vehicle_make' => '',
+                'vehicle_model' => ''
+            ]);
+            return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.',$this->json_data);
     	}
     }
 
@@ -58,12 +54,7 @@ class DriverVehicleController extends Controller
                 foreach ($errors->all() as $message) {
                     $this->msg .= $message.';';
                 }
-                return [
-                    'status' => 'error',
-                    'status_code' => 400,
-                    'message' => $this->msg,
-                    'data' => ''
-                ];
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
             }
             $vehicle = new DriverVehicle();
             $vehicle->user_id = $id;
@@ -72,39 +63,26 @@ class DriverVehicleController extends Controller
     		$vehicle->vehicle_make = $data['vehicle_make'];
     		$vehicle->vehicle_model = $data['vehicle_model'];
     		if($vehicle->save()){
-    			return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values added',
-    				'data' => ''
-    			];
+                return $this->apiResponse->sendResponse(200,'All values added.','');
     		}
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'unable to add records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 
     public function update_vehicle(Request $request){
     	try{
-    		//return $request->all();
     		$id = $request->user()->id;
     		$vehicle = DriverVehicle::where(['user_id'=>$id])->update($request->all());
-    		//$request = array_merge($request->all(), ['user_id' => $id]);
-    		//return $request->all()->put('user_id', $id);
     		if($vehicle){
-        		return [
-    				'status' => 'success',
-    				'status_code' => 200,
-    				'message' => 'All values updated',
-    				'data' => ''
-    			];
+                return $this->apiResponse->sendResponse(200,'All values updated.','');
     		}
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'unable to update records.','');
     	}
     	catch(Exception $e){
-    		return $this->error;
+    		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Driver\Auth;
 
+use App\Http\Controllers\ApiResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,26 +12,23 @@ use GuzzleHttp\Client;
 class LoginProxy extends Controller
 {
     const REFRESH_TOKEN = 'refreshToken';
+    private $apiResponse;
     private $apiConsumer;
     private $auth;
     private $cookie;
     private $db;
     private $request;
     private $userRepository;
-    public function __construct(Application $app, User $userRepository) {
+    public function __construct(Application $app, User $userRepository,ApiResponse $apiResponse) {
         $this->userRepository = $userRepository;
-        $this->apiConsumer = new Client();//$app->make('apiconsumer');
+        $this->apiResponse = $apiResponse;
+        $this->apiConsumer = new Client();
         $this->auth = $app->make('auth');
         $this->cookie = $app->make('cookie');
         $this->db = $app->make('db');
         $this->request = $app->make('request');
     }
-    /**
-     * Attempt to create an access token using user credentials
-     *
-     * @param string $email
-     * @param string $password
-     */
+
     public function attemptLogin($phone, $password){
         $user = $this->userRepository->where('phone', $phone)->first();
         if (!is_null($user)) {
@@ -40,31 +38,23 @@ class LoginProxy extends Controller
             ]);
         }
         else{
-        	return [
-        		'status' => 'error',
-            	'status_code' => 401,
-            	'message' => 'The user credentials were incorrect.',
-            	'data' => ''
+        	$data = [
+        		'access_token' => '',
+            	'expires_in' => '',
+            	'refresh_token' => '',
             ];
+            return $this->apiResponse->sendResponse(401,'The user credentials were incorrect.',$data);
         }
-        //throw new \InvalidCredentialsException();
+        
     }
-    /**
-     * Attempt to refresh the access token used a refresh token that 
-     * has been saved in a cookie
-     */
+    
     public function attemptRefresh($refreshToken){
         //$refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
         return $this->proxy('refresh_token', [
             'refresh_token' => $refreshToken
         ]);
     }
-    /**
-     * Proxy a request to the OAuth server.
-     * 
-     * @param string $grantType what type of grant type should be proxied
-     * @param array $data the data to send to the server
-     */
+    
     public function proxy($grantType, array $data = []){
     	$config = app()->make('config');
         $data = array_merge($data, [
@@ -74,7 +64,7 @@ class LoginProxy extends Controller
         ]);
 
         try {
-        //$response = $this->apiConsumer->post('/oauth/token', $data);
+        
         	$response = $this->apiConsumer->post(sprintf('%s/oauth/token', $config->get('app.url')), [
                 'form_params' => $data
             ]);
@@ -84,21 +74,16 @@ class LoginProxy extends Controller
 	        	'expires_in' => $data->expires_in,
 	            'refresh_token' => $data->refresh_token	
 	        ];
-	        return [
-	        	'status' => 'success',
-	        	'status_code' => 200,
-	        	'message' => 'Login Successful',
-	        	'data' => $token_data
-	            
-	        ];
+            return $this->apiResponse->sendResponse(200,'Login Successful',$token_data);
+
         }catch(\GuzzleHttp\Exception\BadResponseException $e){
         	$response = json_decode($e->getResponse()->getBody());
-        	return [
-        		'status' => 'error',
-        		'status_code' => $e->getCode(),
-        		'message' => $response->message,
-        		'data' => ''
-        	];
+        	$data = [
+                'access_token' => '',
+                'expires_in' => '',
+                'refresh_token' => '',
+            ];
+            return $this->apiResponse->sendResponse($e->getCode(),$response->message,$data);
         }
 	        
     }
@@ -116,12 +101,7 @@ class LoginProxy extends Controller
                 	'revoked' => true
             	]);
         	$accessToken->revoke();
-        	return [
-        		'status' => 'success',
-        		'status_code' => 200,
-        		'message' => 'Token destroyed Successfully',
-        		'data' => ''
-        	];
+            return $this->apiResponse->sendResponse(200,'Token destroyed Successfully','');
     	}
     	catch(Exception $e){
 
