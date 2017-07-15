@@ -148,7 +148,7 @@ class AuthController extends Controller
             $data = json_decode($response->getBody());
             $new_data = [
                 'phone'     => $phone,
-                'message' => $data->message,
+                'message_id' => $data->message,
                 'type' => $data->type
             ];
             if($data->type == 'success'){
@@ -162,7 +162,7 @@ class AuthController extends Controller
         catch(Exception $e){
             $new_data = [
                 'phone'     => '',
-                'message' => '',
+                'message_id' => '',
                 'type' => ''
             ];
             return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
@@ -177,7 +177,7 @@ class AuthController extends Controller
             $data = json_decode($response->getBody());
             $new_data = [
                 'phone'     => $phone,
-                'message' => $data->message,
+                'message_id' => $data->message,
                 'type' => $data->type
             ];
             if($data->type == 'success'){
@@ -193,7 +193,7 @@ class AuthController extends Controller
         catch(Exception $e){
             $new_data = [
                 'phone'     => '',
-                'message' => '',
+                'message_id' => '',
                 'type' => ''
             ];
             return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
@@ -208,7 +208,7 @@ class AuthController extends Controller
             $data = json_decode($response->getBody());
             $new_data = [
                 'phone'     => $phone,
-                'message' => $data->message,
+                'message_id' => $data->message,
                 'type' => $data->type
             ];
             if($data->type == 'success'){
@@ -222,7 +222,7 @@ class AuthController extends Controller
         catch(Exception $e){
             $new_data = [
                 'phone'     => '',
-                'message' => '',
+                'message_id' => '',
                 'type' => ''
             ];
             return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
@@ -240,7 +240,7 @@ class AuthController extends Controller
                 $data = json_decode($response->getBody());
                 $new_data = [
                     'phone'     => $phone,
-                    'message' => $data->message,
+                    'message_id' => $data->message,
                     'type' => $data->type
                 ];
                 if($data->type == 'success'){
@@ -253,7 +253,7 @@ class AuthController extends Controller
             else{
                 $new_data = [
                     'phone'     => '',
-                    'message' => '',
+                    'message_id' => '',
                     'type' => ''
                 ];
                 return $this->apiResponse->sendResponse(500,'unable to update phone.',$new_data);
@@ -263,7 +263,7 @@ class AuthController extends Controller
         catch(Exception $e){
             $new_data = [
                 'phone'     => '',
-                'message' => '',
+                'message_id' => '',
                 'type' => ''
             ];
             return $this->apiResponse->sendResponse(500,'Internal server error',$new_data);
