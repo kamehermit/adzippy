@@ -64,7 +64,7 @@ class DriverAddressController extends Controller
                 'address_line2' => '',
                 'city' => '',
                 'pincode' => '',
-            ]);
+            ];
     		return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
@@ -73,7 +73,7 @@ class DriverAddressController extends Controller
                 'address_line2' => '',
                 'city' => '',
                 'pincode' => '',
-            ]);
+            ];
     		return $this->apiResponse->sendResponse(500,'Internal Server Error.',$this->json_data);
     	}
     }
