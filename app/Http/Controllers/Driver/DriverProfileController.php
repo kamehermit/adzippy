@@ -29,7 +29,7 @@ class DriverProfileController extends Controller
                 'name' => '',
                 'phone' => '',
                 'email' => ''
-            ]);
+            ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
@@ -85,7 +85,7 @@ class DriverProfileController extends Controller
                 'current_password'          => 'required',
         		'new_password'              => 'required',
         		'password_confirmation' => 'required|same:new_password'
-            ]);
+            ];
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

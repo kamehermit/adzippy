@@ -32,7 +32,7 @@ class DriverPaymentController extends Controller
                 'bank_name' => '',
                 'ifsc' => '',
                 'branch_code' => ''
-            ]);
+            ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
@@ -50,7 +50,7 @@ class DriverPaymentController extends Controller
                 'account_number' => 'required',
                 'ifsc' => 'required',
                 'branch_code' => 'required',
-            ]);
+            ];
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

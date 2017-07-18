@@ -28,7 +28,7 @@ class DriverWorkController extends Controller
     		}
     		$this->json_data = [
                 'designation' => ''
-            ]);
+            ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
@@ -42,7 +42,7 @@ class DriverWorkController extends Controller
     		$data = $request->all();
     		$check = \Validator::make($request->all(), [
                 'designation' => 'required',
-            ]);
+            ];
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

@@ -31,7 +31,7 @@ class DriverVehicleController extends Controller
                 'registration_number' => '',
                 'vehicle_make' => '',
                 'vehicle_model' => ''
-            ]);
+            ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
@@ -48,7 +48,7 @@ class DriverVehicleController extends Controller
                 'registration_number' => 'required',
                 'vehicle_make' => 'required',
                 'vehicle_model' => 'required',
-            ]);
+            ];
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {
