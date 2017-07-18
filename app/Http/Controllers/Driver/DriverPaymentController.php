@@ -50,7 +50,7 @@ class DriverPaymentController extends Controller
                 'account_number' => 'required',
                 'ifsc' => 'required',
                 'branch_code' => 'required',
-            ];
+            ]);
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

@@ -48,7 +48,7 @@ class DriverVehicleController extends Controller
                 'registration_number' => 'required',
                 'vehicle_make' => 'required',
                 'vehicle_model' => 'required',
-            ];
+            ]);
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

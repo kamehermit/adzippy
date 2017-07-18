@@ -42,7 +42,7 @@ class DriverWorkController extends Controller
     		$data = $request->all();
     		$check = \Validator::make($request->all(), [
                 'designation' => 'required',
-            ];
+            ]);
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

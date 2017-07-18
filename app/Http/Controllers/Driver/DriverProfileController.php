@@ -85,7 +85,7 @@ class DriverProfileController extends Controller
                 'current_password'          => 'required',
         		'new_password'              => 'required',
         		'password_confirmation' => 'required|same:new_password'
-            ];
+            ]);
             if($check->fails()){
                 $errors = $check->errors();
                 foreach ($errors->all() as $message) {

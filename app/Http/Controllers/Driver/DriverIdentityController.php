@@ -29,7 +29,7 @@ class DriverIdentityController extends Controller
             $this->json_data = [
                 'aadhar_number' => '',
                 'pan' => ''
-            ]);
+            ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
     	catch(Exception $e){
