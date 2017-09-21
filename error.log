@@ -16,3 +16,4 @@ Stack trace:
 #4 /srv/http/adzippy/app/Providers/RouteServiceProvider.php(105): Illuminate\Routing\RouteRegistrar->group('/srv/http/adzip...')
 #5 /srv/http/adzippy/app/...
 PHP message: PHP Fatal error:  Illuminate\Routing\Router::loadRoutes(): Failed opening required '/srv/http/adzippy/routes/driver/protected_routes.php' (include_path='.:') in /srv/http/adzippy/vendor/laravel/framework/src/Illuminate/Routing/Router.php on line 329" while reading response header from upstream, client: 127.0.0.1, server: adzippy.dev, request: "GET /api/driver/user HTTP/1.1", upstream: "fastcgi://unix:/run/php-fpm/php-fpm.sock:", host: "adzippy.dev"
+2017/09/21 06:53:07 [error] 386#386: *76 open() "/srv/http/adzippy/public/images/call-01.png" failed (2: No such file or directory), client: 127.0.0.1, server: adzippy.dev, request: "GET /images/call-01.png HTTP/1.1", host: "adzippy.dev", referrer: "http://adzippy.dev/"

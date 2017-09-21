@@ -1,0 +1,247 @@
+body{
+	font-family: 'Roboto', san-serif;
+}
+.header{
+	min-height: 400px;
+	/*background-color: #fff ;*/
+	background: url('../images/advertiser-header.png') no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+}
+.narbar{
+	margin: 10px;
+	padding: 10px;
+}
+.logo{
+	margin: 10px;
+	padding: 10px;
+	float: left;
+	color: #fff;
+}
+.logo .block{
+	width: auto;
+	border: 3px solid;
+	border-color: #fff;
+	border-radius: 4px; 
+	padding: 5px;
+}
+.logo .block .letter{
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+}
+.logo_w{
+	margin: 10px;
+	padding: 10px;
+	float: left;
+	color: #fff;
+}
+.logo_w .block_w{
+	width: auto;
+	border: 3px solid;
+	border-color: #fff;
+	border-radius: 4px; 
+	padding: 5px;
+}
+.logo_w .block_w .letter_w{
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+}
+
+.menu{
+	float: right;
+	margin: 15px;
+	color: #fff;
+}
+.menu a{
+	padding: 5px;
+	font-size: 25pt;
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+}
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background-color: #0071BC;
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 10%;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 0px;
+    text-decoration: none;
+    font-size: 40px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 35px;
+    font-size: 55px;
+}
+.overlay-block{
+	/*min-height: 200px;
+    border-left: 4px solid #fff;*/
+}
+#overlay-block-img{
+
+}
+.opacity-layer{
+	background-color: rgba(0,0,0,0.3);;
+	min-height: inherit;
+}
+.page-title{
+	margin-top: 50px;
+	padding: auto; 
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    font-size: 40pt;
+    font-weight: 300;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px;}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+.dashboard-btn,.dashboard-btn:active, .dashboard-btn:visited{
+	margin: 5px;
+	padding: 8px;
+	border: 3px solid;
+	border-color: #fff;
+	border-radius: 3px;
+	width: auto;
+	color: #fff;
+	font-size: 20px; 
+}
+.dashboard-btn:hover{
+	background-color: #fff;
+	color: #0071BC;
+}
+.footer{ 
+	background-color: #333;
+	color: #29ABE2;
+	padding-bottom: 10px;
+}
+.footer .title{
+	margin-top: 30px;
+	color: white;
+}
+.footer ul {
+    list-style:none;
+    padding-left:0;
+}​
+.footer .social ul{
+	list-style:none;
+    padding-left:0;
+}
+.footer .social ul li{
+	display: inline;
+}
+.footer .social ul li img{
+	max-width: 20px;
+}
+.works-title{
+	color: #fff;
+	margin: 0px;
+	padding: 20px; 
+	text-align: center;
+	font-size: 30pt;
+}
+.works{
+	margin-top: 20px;
+	padding: 20px;
+	background-color: #0071BC;
+}
+.content{
+	margin: 20px;
+	padding: 20px; 
+}
+.content .title{
+	margin-top: 40px; 
+	font-size: 20pt;
+	color: #0071BC;
+}
+.content .text{
+	margin-top: 20px; 
+	font-size: 13pt;
+	color: #0071BC;
+}
+.image{ 	
+	width: 75%;
+	margin: auto;
+	padding: auto;
+}
+.section1 .image{
+	width: 75%;
+	margin: auto;
+	padding: auto;
+	margin-top: -30px;
+}
+.section1 .text{
+	margin-top: 50px; 
+	font-size: 16pt;
+	color: #fff;
+	font-weight: 300;
+}
+.ilit{
+	margin: 10px;
+	padding: 10px;
+}
+.ilit .image{
+	margin:auto;
+	padding: auto;
+}
+.ilit .content .title{
+	font-size: 20pt;
+	color: #0071BC;
+}
+.ilit .content .text{
+	font-size: 13pt;
+	color: #0071BC;
+}
+.blue-banner{
+	background-color: #0071BC;
+	padding: 20px;
+	text-align: center;
+}
+.download-app-dwn, .download-app-dwn:visited, .download-app-dwn:active{
+	margin: 25px;
+	padding: 10px;
+	border: 3px solid;
+	border-color: #fff;
+	border-radius: 5px;
+	width: auto;
+	color: #fff;
+	font-size: 25px; 
+}
+.download-app-dwn:hover{
+	background-color: #fff;
+	color: #0071BC;
+}
