@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!--Custom Stylesheet-->
-	<link rel="stylesheet" type="text/css" href="{{URL::assets('/styles/advertiser.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{URL::asset('/css/advertiser.css')}}">
 
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
@@ -54,7 +54,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-push-6">
 					<div class="image">
-						<img src="{{URL::assets('/images/outdoors.png')}}" class="img-responsive">	
+						<img src="{{URL::asset('/images/outdoors.png')}}" class="img-responsive">	
 					</div>
 				</div>
 				<div class="col-md-6 col-md-pull-6">
@@ -81,7 +81,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<img src="{{URL::assets('/images/cloud-ui.png')}}" class="img-responsive">
+					<img src="{{URL::asset('/images/cloud-ui.png')}}" class="img-responsive">
 				</div>
 				<div class="col-md-6">
 					<div class="content">
@@ -139,7 +139,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-push-6">
 					<div class="image">
-						<img src="{{URL::assets('/images/gps.png')}}" class="img-responsive">
+						<img src="{{URL::asset('/images/gps.png')}}" class="img-responsive">
 					</div>
 				</div>
 				<div class="col-md-6 col-md-pull-6">
@@ -277,7 +277,7 @@
 	  	<div class="row">
 	  		<div class="col-md-6">
 	  			<div class="overlay-content">
-				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
+				    <a href="{{ url('driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('advertiser') }}" id="advertiser">Advertiser</a>
 				    <a href="{{ url('about') }}" id="contactus">Contact Us</a>
 				    <a href="{{ url('about') }}" id="about">About Us</a>
