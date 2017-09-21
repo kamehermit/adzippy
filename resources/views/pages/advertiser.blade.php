@@ -22,7 +22,7 @@
 		<div class="opacity-layer">
 			<div class="navbar">
 				<div class="container-fluid">
-					<a href="{{ URL::assets('/') }}" class="logo" style="text-decoration: none;">
+					<a href="{{ url('/') }}" class="logo" style="text-decoration: none;">
 						<div class="block">
 							<div class="letter">
 								adzippy
