@@ -239,7 +239,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-10 col-md-offset-1">
 					<div class="start-quote">
 						<img src="{{URL::asset('/images/start-quote-01.png')}}" class="img-responsive">
 					</div>
@@ -299,7 +299,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-10 col-md-offset-1">
 					<div class="end-quote">
 						<img src="{{URL::asset('/images/end-quote-01.png')}}" class="img-responsive">
 					</div>
