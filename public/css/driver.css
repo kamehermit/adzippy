@@ -10,6 +10,11 @@ body{
   	-o-background-size: cover;
    
 }
+@media (max-width: 786px){
+.footer {
+  text-align:center;
+}
+}
 .narbar{
 	margin: 10px;
 	padding: 10px;

@@ -5,6 +5,18 @@ body{
 	min-height: 100vh;
 	/*background-color: #fff ;*/
 }
+@media (min-width: 1200px){
+  .header{
+    height: 100vh;
+    max-height: 700px;
+    min-height: auto; 
+  }
+}
+@media (max-width: 786px){
+  .footer {
+    text-align:center;
+  }
+}
 .narbar{
 	margin: 10px;
 	padding: 10px;

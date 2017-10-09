@@ -75,13 +75,13 @@
 							<div class="col-md-12">
 								<div class="content">
 									<div class="subtitle">
-										<b>SUBTITLE</b>
+										<b>SMART ADVERTISING</b>
 									</div>
 									<div class="title">
-										TITLE
+										ADZIPPY
 									</div>
 									<div class="text">
-										<p>asdkja asdkjasd askjdasd kajsdhaskdj jaksda askjda aksjdasd ajskdasd kajsdad kasjda kasjdhaskdj ajskda aksjdad kjasdakjds kjasdaskjdb kajs kasdj aksjb aksjds kasb kasjd as asdsd jnj joq weie zxc </p>
+										<p>Gone are the days of dependance, feel your independence with Adzippy.</p>
 									</div>	
 								</div>
 								
