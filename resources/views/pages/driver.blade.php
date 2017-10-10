@@ -41,7 +41,7 @@
 					<div class="page-title">
 						Driver
 						<p>
-							<a href="" class="btn download-app">Download App</a>
+							<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app" download>Download App</a>
 						</p>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="" class="btn download-app-dwn">Download App</a>
+					<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app-dwn" download>Download App</a>
 				</div>
 			</div>
 		</div>
