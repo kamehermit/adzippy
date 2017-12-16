@@ -88,4 +88,64 @@ class DriverPaymentController extends Controller
             return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
     }
+
+    public function earn(Request $request,$id){
+        try{
+            $user_id = $request->user()->id;
+            if(!$id){
+                $this->msg .= "The type field is required.;";
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
+            }
+            if($id==1){
+                $json_data = [
+                    '16-12-2017' => [
+                        'transaction_id'=>'4345b3453e4535b',
+                        'earnings'=>'28.38'
+                    ],
+                    '17-12-2017' => [
+                        'transaction_id'=>'4345b3453e4895t',
+                        'earnings'=>'55.50'
+                    ],
+                    '18-12-2017' => [
+                        'transaction_id'=>'1389s3453u4535b',
+                        'earnings'=>'125.00'
+                    ],
+                    '19-12-2017' => [
+                        'transaction_id'=>'4345b3453e9734h',
+                        'earnings'=>'30.17'
+                    ],
+                    '20-12-2017' => [
+                        'transaction_id'=>'4345b0172e4535b',
+                        'earnings'=>'67.64'
+                    ],
+                    '21-12-2017' => [
+                        'transaction_id'=>'9274b0893t4535q',
+                        'earnings'=>'45.20'
+                    ],
+                    '22-12-2017' => [
+                        'transaction_id'=>'4235b34553e4535',
+                        'earnings'=>'98.00'
+                    ],
+                ];
+                return $this->apiResponse->sendResponse(200,'All values fetched.',$json_data);    
+            }
+            elseif($id==2){
+                $json_data = [
+                    '12-2017' => '345.65',
+                    '11-2017' => '145.23',
+                    '10-2017' => '958.67',
+                    '09-2017' => '345.40',
+                    '08-2017' => '289.50'
+                ];
+                return $this->apiResponse->sendResponse(200,'All values fetched.',$json_data);
+            }
+            else
+                return $this->apiResponse->sendResponse(400,'unable to fetch records.','');
+        }
+        catch(Exception $e){
+            return $this->apiResponse->sendResponse(500,'Internal server error.','');   
+        }
+
+
+    }
 }

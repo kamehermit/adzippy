@@ -18,20 +18,21 @@ $router->post('/update/profile/password',['uses' => 'DriverProfileController@upd
 
 //Route::group(['middleware' => ['driver.kyc']],function(){	
 
-	$router->post('/add/address',['middleware'=>'kyc.lock','uses' => 'DriverAddressController@add_address']);
-	$router->put('/update/address',['middleware'=>'kyc.lock','uses' => 'DriverAddressController@update_address']);
+$router->post('/add/address',['middleware'=>'kyc.lock','uses' => 'DriverAddressController@add_address']);
+$router->put('/update/address',['middleware'=>'kyc.lock','uses' => 'DriverAddressController@update_address']);
 
-	$router->post('/add/payment',['middleware'=>'kyc.lock','uses' => 'DriverPaymentController@add_payment']);
-	$router->put('/update/payment',['middleware'=>'kyc.lock','uses' => 'DriverPaymentController@update_payment']);
+$router->post('/add/payment',['middleware'=>'kyc.lock','uses' => 'DriverPaymentController@add_payment']);
+$router->put('/update/payment',['middleware'=>'kyc.lock','uses' => 'DriverPaymentController@update_payment']);
 
-	$router->post('/add/vehicle',['middleware'=>'kyc.lock','uses' => 'DriverVehicleController@add_vehicle']);
-	$router->put('/update/vehicle',['middleware'=>'kyc.lock','uses' => 'DriverVehicleController@update_vehicle']);
+$router->post('/add/vehicle',['middleware'=>'kyc.lock','uses' => 'DriverVehicleController@add_vehicle']);
+$router->put('/update/vehicle',['middleware'=>'kyc.lock','uses' => 'DriverVehicleController@update_vehicle']);
 
-	$router->post('/add/identity',['middleware'=>'kyc.lock','uses' => 'DriverIdentityController@add_identity']);
-	$router->put('/update/identity',['middleware'=>'kyc.lock','uses' => 'DriverIdentityController@update_identity']);
+$router->post('/add/identity',['middleware'=>'kyc.lock','uses' => 'DriverIdentityController@add_identity']);
+$router->put('/update/identity',['middleware'=>'kyc.lock','uses' => 'DriverIdentityController@update_identity']);
 
-	$router->post('/add/work',['middleware'=>'kyc.lock','uses' => 'DriverWorkController@add_work']);
-	$router->put('/update/work',['middleware'=>'kyc.lock','uses' => 'DriverWorkController@update_work']);
+$router->post('/add/work',['middleware'=>'kyc.lock','uses' => 'DriverWorkController@add_work']);
+$router->put('/update/work',['middleware'=>'kyc.lock','uses' => 'DriverWorkController@update_work']);
 //});
 
 $router->post('/track',['middleware'=>'kyc.verify','uses' => 'DriverTrackingController@track']);
+$router->get('/{id}/earnings',['middleware'=>'kyc.verify','uses' => 'DriverPaymentController@earn']);
