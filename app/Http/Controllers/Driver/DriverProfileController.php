@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiResponse;
 use App\User;
 use App\DriverAddress;
+use App\DriverIdentity;
+use App\DriverPayment;
+use App\DriverVehicle;
 
 class DriverProfileController extends Controller
 {
@@ -22,8 +25,14 @@ class DriverProfileController extends Controller
     public function get_profile(Request $request){
     	try{
     		$id = $request->user()->id;
-    		$response = User::where(['id'=>$id])->get(['name','phone','email','verified','kyc'])->first();
-            $address = DriverAddress::where(['user_id'=>$id])->get(['address_line1','address_line2','city','pincode'])->first();
+    		$response = User::where(['users.id'=>$id])->join('driver_addresses','driver_addresses.user_id','=','users.id')->join('driver_payments','driver_payments.user_id','=','users.id')->join('driver_vehicles','driver_vehicles.user_id','=','users.id')->join('driver_identities','driver_identities.user_id','=','users.id')->get(['name','phone','email','verified','kyc','driver_addresses.*','driver_payments.*','driver_vehicles.*','driver_identities.*'])->first();
+            /*$address = DriverAddress::where(['user_id'=>$id])->get(['address_line1','address_line2','city','pincode'])->first();
+            $bank = DriverPayment::where(['user_id'=>$id])->get(['account_number','account_holder_name','bank_name','ifsc','branch_code'])->first();
+            $vehicle = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model','cab_service'])->first();
+            $identity = DriverIdentity::where(['user_id'=>$id])->get(['aadhar_number','pan'])->first();*/
+
+            /*array_push($response,$address,$bank,$vehicle,$identity);*/
+
     		if($response){
     			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
