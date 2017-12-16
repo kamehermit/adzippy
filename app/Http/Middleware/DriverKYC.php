@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Response; 
 
-class UserVerification
+class DriverKYC
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,14 @@ class UserVerification
      */
     public function handle($request, Closure $next)
     {
-        $flag = $request->user()->verified;
-        $kyc = $request->user()->kyc;
-        if(!$flag){
+        $flag = $request->user()->kyc;
+        if($flag){
             return Response::json([
                 'status' => 'error',
                 'status_code' => 401,
-                'message' => 'User not verified.',
+                'message' => 'method not allowed',
                 'data' => ''
-            ]); 
+            ]);
         }
         return $next($request);
     }

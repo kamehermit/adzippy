@@ -20,6 +20,7 @@ class CreateDriverVehiclesTable extends Migration
             $table->string('registration_number');
             $table->string('vehicle_model');
             $table->string('vehicle_make');
+            $table->string('cab_service');
             $table->timestamps();
         });
         Schema::table('driver_vehicles',function($table){

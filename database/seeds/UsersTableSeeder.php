@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
     $driver->phone = '9876543210';
     $driver->password = bcrypt('password');
     $driver->verified = 1;
+    $driver->kyc = 1;
     $driver->save();
     $driver->roles()->attach($role_driver);
 
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder
     $advertiser->phone = '9753124680';
     $advertiser->password = bcrypt('password');
     $advertiser->verified = 1;
+    $advertiser->kyc = 1;
     $advertiser->save();
     $advertiser->roles()->attach($role_advertiser);
   }

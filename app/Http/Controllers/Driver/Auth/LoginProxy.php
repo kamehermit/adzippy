@@ -19,6 +19,7 @@ class LoginProxy extends Controller
     private $db;
     private $request;
     private $userRepository;
+    
     public function __construct(Application $app, User $userRepository,ApiResponse $apiResponse) {
         $this->userRepository = $userRepository;
         $this->apiResponse = $apiResponse;

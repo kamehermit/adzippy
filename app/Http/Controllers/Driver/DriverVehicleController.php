@@ -21,7 +21,7 @@ class DriverVehicleController extends Controller
     public function get_vehicle(Request $request){
     	try{
     		$id = $request->user()->id;
-    		$response = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model'])->first();
+    		$response = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model','cab_service'])->first();
 
     		if($response){
     			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
@@ -48,6 +48,7 @@ class DriverVehicleController extends Controller
                 'registration_number' => 'required',
                 'vehicle_make' => 'required',
                 'vehicle_model' => 'required',
+                'cab_service' => 'required',
             ]);
             if($check->fails()){
                 $errors = $check->errors();
@@ -62,6 +63,7 @@ class DriverVehicleController extends Controller
     		$vehicle->registration_number = $data['registration_number'];
     		$vehicle->vehicle_make = $data['vehicle_make'];
     		$vehicle->vehicle_model = $data['vehicle_model'];
+            $vehicle->cab_service = $data['cab_service'];
     		if($vehicle->save()){
                 return $this->apiResponse->sendResponse(200,'All values added.','');
     		}

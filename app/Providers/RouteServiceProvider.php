@@ -99,6 +99,9 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/Driver/Auth/protected_routes.php'));
     }
 
+    /**
+     * All protected API routes under the Driver Domain
+     */
     protected function mapProtectedDriverApiRoutes(){
         Route::prefix('api/v1/driver/')
              ->middleware(['auth:api','user.verify'])

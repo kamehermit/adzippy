@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiResponse;
 use App\User;
+use App\DriverAddress;
 
 class DriverProfileController extends Controller
 {
@@ -21,7 +22,8 @@ class DriverProfileController extends Controller
     public function get_profile(Request $request){
     	try{
     		$id = $request->user()->id;
-    		$response = User::where(['id'=>$id])->get(['name','phone','email'])->first();
+    		$response = User::where(['id'=>$id])->get(['name','phone','email','verified','kyc'])->first();
+            $address = DriverAddress::where(['user_id'=>$id])->get(['address_line1','address_line2','city','pincode'])->first();
     		if($response){
     			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
