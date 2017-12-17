@@ -36,3 +36,4 @@ $router->put('/update/work',['middleware'=>'kyc.lock','uses' => 'DriverWorkContr
 
 $router->post('/track',['middleware'=>'kyc.verify','uses' => 'DriverTrackingController@track']);
 $router->get('/{id}/earnings',['middleware'=>'kyc.verify','uses' => 'DriverPaymentController@earn']);
+$router->get('/get/campaign',['middleware'=>'kyc.verify','uses'=>'DriverTrackingController@campaign']);

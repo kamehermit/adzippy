@@ -42,4 +42,21 @@ class DriverTrackingController extends Controller
     		return $this->apiResponse->sendResponse(500,'Internal Server Error.','');
     	}
     }
+
+    public function campaign(Request $request){
+        try{
+            $this->json_data =[
+                'campaign_name' => 'Burger King',
+                'campaign_banner' => \URL::asset('/images/burger_king.jpg'),
+                'money_earned' => 2418.90,
+                'impressions' => 5000,
+                'distance_travelled' => 48
+            ];
+
+            return $this->apiResponse->sendResponse(200,'All values fetched.',$this->json_data);            
+        }
+        catch(Exception $e){
+            return $this->apiResponse->sendResponse(500,'Internal Server Error.','');
+        }
+    }
 }
