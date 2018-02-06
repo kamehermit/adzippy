@@ -16,8 +16,9 @@ class UsersTableSeeder extends Seeder
     $driver->email = 'john.doe@gmail.com';
     $driver->phone = '9876543210';
     $driver->password = bcrypt('password');
-    $driver->verified = 1;
-    $driver->kyc = 1;
+    //$driver->verified = 1;
+    //$driver->kyc = 1;
+    $driver->avatar='pepe.jpg';
     $driver->save();
     $driver->roles()->attach($role_driver);
 
@@ -26,8 +27,9 @@ class UsersTableSeeder extends Seeder
     $advertiser->email = 'seth.rogen@gmail.com';
     $advertiser->phone = '9753124680';
     $advertiser->password = bcrypt('password');
-    $advertiser->verified = 1;
-    $advertiser->kyc = 1;
+    //$advertiser->verified = 1;
+    //$advertiser->kyc = 1;
+    $advertiser->avatar='pepe.jpg';
     $advertiser->save();
     $advertiser->roles()->attach($role_advertiser);
   }

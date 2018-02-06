@@ -15,6 +15,7 @@ $router->get('/get/profile',['uses' => 'DriverProfileController@get_profile']);
 $router->put('/update/profile/email/{email}',['uses' => 'DriverProfileController@update_email']);
 $router->put('/update/profile/name/{name}',['uses' => 'DriverProfileController@update_name']);
 $router->post('/update/profile/password',['uses' => 'DriverProfileController@update_password']);
+$router->post('/update/profile/picture',['uses'=>'DriverProfileController@update_picture']);
 
 //Route::group(['middleware' => ['driver.kyc']],function(){	
 

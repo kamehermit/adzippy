@@ -43,16 +43,18 @@ class LoginProxy extends Controller
         		'access_token' => '',
             	'expires_in' => '',
             	'refresh_token' => '',
+                'verified' => '',
             ];
             return $this->apiResponse->sendResponse(401,'The user credentials were incorrect.',$data);
         }
         
     }
     
-    public function attemptRefresh($refreshToken){
+    public function attemptRefresh($refreshToken,$phone){
         //$refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
         return $this->proxy('refresh_token', [
-            'refresh_token' => $refreshToken
+            'refresh_token' => $refreshToken,
+            'username' => $phone
         ]);
     }
     
@@ -65,7 +67,7 @@ class LoginProxy extends Controller
         ]);
 
         try {
-        
+            $user = $this->userRepository->where('phone', $data['username'])->first();
         	$response = $this->apiConsumer->post(sprintf('%s/oauth/token', $config->get('app.url')), [
                 'form_params' => $data
             ]);
@@ -73,7 +75,8 @@ class LoginProxy extends Controller
 	        $token_data = [
 	        	'access_token' => $data->access_token,
 	        	'expires_in' => $data->expires_in,
-	            'refresh_token' => $data->refresh_token	
+	            'refresh_token' => $data->refresh_token,
+                'verified' => $user->verified,
 	        ];
             return $this->apiResponse->sendResponse(200,'Login Successful',$token_data);
 
@@ -83,6 +86,7 @@ class LoginProxy extends Controller
                 'access_token' => '',
                 'expires_in' => '',
                 'refresh_token' => '',
+                'verified' => '',
             ];
             return $this->apiResponse->sendResponse($e->getCode(),$response->message,$data);
         }

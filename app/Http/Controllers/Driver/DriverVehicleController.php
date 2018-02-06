@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiResponse;
 use App\DriverVehicle;
+use App\User;
 
 class DriverVehicleController extends Controller
 {
@@ -21,8 +22,9 @@ class DriverVehicleController extends Controller
     public function get_vehicle(Request $request){
     	try{
     		$id = $request->user()->id;
+            $verified['verified'] = $request->user()->verified;
     		$response = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model','cab_service'])->first();
-
+            $response['verified'] = $verified['verified'];
     		if($response){
     			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
@@ -30,7 +32,8 @@ class DriverVehicleController extends Controller
                 'vehicle_number' => '',
                 'registration_number' => '',
                 'vehicle_make' => '',
-                'vehicle_model' => ''
+                'vehicle_model' => '',
+                'verified' => ''
             ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
@@ -43,6 +46,7 @@ class DriverVehicleController extends Controller
     	try{
     		$id = $request->user()->id;
     		$data = $request->all();
+            $verified['verified'] = $request->user()->verified;
     		$check = \Validator::make($request->all(), [
                 'vehicle_number' => 'required',
                 'registration_number' => 'required',
@@ -65,9 +69,11 @@ class DriverVehicleController extends Controller
     		$vehicle->vehicle_model = $data['vehicle_model'];
             $vehicle->cab_service = $data['cab_service'];
     		if($vehicle->save()){
-                return $this->apiResponse->sendResponse(200,'All values added.','');
+                $driver = User::where(['id'=>$id])->update(['verified'=>2]);
+                $verified['verified'] = 2;
+                return $this->apiResponse->sendResponse(200,'All values added.',$verified);
     		}
-    		return $this->apiResponse->sendResponse(500,'unable to add records.','');
+    		return $this->apiResponse->sendResponse(500,'unable to add records.',$verified);
     	}
     	catch(Exception $e){
     		return $this->apiResponse->sendResponse(500,'Internal server error.','');
@@ -77,11 +83,12 @@ class DriverVehicleController extends Controller
     public function update_vehicle(Request $request){
     	try{
     		$id = $request->user()->id;
+            $verified['verified'] = $request->user()->verified;
     		$vehicle = DriverVehicle::where(['user_id'=>$id])->update($request->all());
     		if($vehicle){
-                return $this->apiResponse->sendResponse(200,'All values updated.','');
+                return $this->apiResponse->sendResponse(200,'All values updated.',$verified);
     		}
-    		return $this->apiResponse->sendResponse(500,'unable to update records.','');
+    		return $this->apiResponse->sendResponse(500,'unable to update records.',$verified);
     	}
     	catch(Exception $e){
     		return $this->apiResponse->sendResponse(500,'Internal server error.','');

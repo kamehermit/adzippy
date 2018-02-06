@@ -25,14 +25,14 @@ class DriverProfileController extends Controller
     public function get_profile(Request $request){
     	try{
     		$id = $request->user()->id;
-    		$response = User::where(['users.id'=>$id])->join('driver_addresses','driver_addresses.user_id','=','users.id')->join('driver_payments','driver_payments.user_id','=','users.id')->join('driver_vehicles','driver_vehicles.user_id','=','users.id')->join('driver_identities','driver_identities.user_id','=','users.id')->get(['name','phone','email','verified','kyc','driver_addresses.*','driver_payments.*','driver_vehicles.*','driver_identities.*'])->first();
+    		$response = User::where(['users.id'=>$id])->leftJoin('driver_addresses','driver_addresses.user_id','=','users.id')->leftJoin('driver_payments','driver_payments.user_id','=','users.id')->leftJoin('driver_vehicles','driver_vehicles.user_id','=','users.id')->leftJoin('driver_identities','driver_identities.user_id','=','users.id')->get(['name','phone','email','verified','kyc','avatar','driver_addresses.*','driver_payments.*','driver_vehicles.*','driver_identities.*'])->first();
             /*$address = DriverAddress::where(['user_id'=>$id])->get(['address_line1','address_line2','city','pincode'])->first();
             $bank = DriverPayment::where(['user_id'=>$id])->get(['account_number','account_holder_name','bank_name','ifsc','branch_code'])->first();
             $vehicle = DriverVehicle::where(['user_id'=>$id])->get(['vehicle_number','registration_number','vehicle_make','vehicle_model','cab_service'])->first();
             $identity = DriverIdentity::where(['user_id'=>$id])->get(['aadhar_number','pan'])->first();*/
 
             /*array_push($response,$address,$bank,$vehicle,$identity);*/
-
+            $response['avatar'] = url('/').'/api/v1/driver/auth/get/profile/'.$response['phone'];
     		if($response){
     			return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
@@ -116,5 +116,45 @@ class DriverProfileController extends Controller
     	catch(Exception $e){
     		return $this->apiResponse->sendResponse(500,'Internal server error.','');
     	}
+    }
+
+    public function update_picture(Request $request){
+        try{
+            $id = $request->user()->id;
+            /*$this->validate($request, [
+                'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);*/
+            $check = \Validator::make($request->all(), [
+                'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            if($check->fails()){
+                $errors = $check->errors();
+                foreach ($errors->all() as $message) {
+                    $this->msg .= $message.';';
+                }
+                return $this->apiResponse->sendResponse(400,$this->msg,'');
+            }
+            if ($request->hasFile('img')) {
+                $image = $request->file('img');
+                $name = substr(hash('sha256', mt_rand() . microtime()), 0, 10).'.'.$image->getClientOriginalExtension();
+                $destinationPath = '/storage/app/public/images';
+                $image->move(base_path().$destinationPath, $name);
+
+                $response = User::where(['id'=>$id])->update(['avatar'=>$name]);
+
+                if($response){
+                    return $this->apiResponse->sendResponse(200,'All values updated','');    
+                }
+                return $this->apiResponse->sendResponse(400,'unable to update.','');
+                
+            }
+            else{
+                return $this->apiResponse->sendResponse(400,'img parameter is required','');
+            }
+
+        }
+        catch(Exception $e){
+            return $this->apiResponse->sendResponse(500,'Internal server error.','');
+        }
     }
 }

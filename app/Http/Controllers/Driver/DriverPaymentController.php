@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiResponse;
 use App\DriverPayment;
+use App\User;
 
 class DriverPaymentController extends Controller
 {
@@ -21,8 +22,9 @@ class DriverPaymentController extends Controller
     public function get_payment(Request $request){
     	try{
     		$id = $request->user()->id;
+            $verified['verified'] = $request->user()->verified;
     		$response = DriverPayment::where(['user_id'=>$id])->get(['account_number','account_holder_name','bank_name','ifsc','branch_code'])->first();
-
+            $response['verified'] = $verified['verified'];
     		if($response){
                 return $this->apiResponse->sendResponse(200,'All values fetched.',$response);
     		}
@@ -31,7 +33,8 @@ class DriverPaymentController extends Controller
                 'account_holder_name' => '',
                 'bank_name' => '',
                 'ifsc' => '',
-                'branch_code' => ''
+                'branch_code' => '',
+                'verified' => ''
             ];
             return $this->apiResponse->sendResponse(500,'unable to fetch records.',$this->json_data);
     	}
@@ -44,6 +47,7 @@ class DriverPaymentController extends Controller
     	try{
     		$id = $request->user()->id;
     		$data = $request->all();
+            $verified['verified'] = $request->user()->verified;
     		$check = \Validator::make($request->all(), [
                 'account_holder_name' => 'required',
                 'bank_name' => 'required',
@@ -66,9 +70,11 @@ class DriverPaymentController extends Controller
     		$payment->ifsc = $data['ifsc'];
     		$payment->branch_code = $data['branch_code'];
     		if($payment->save()){
-                return $this->apiResponse->sendResponse(200,'All values added.','');
+                $driver = User::where(['id'=>$id])->update(['verified'=>4]);
+                $verified['verified'] = 4;
+                return $this->apiResponse->sendResponse(200,'All values added.',$verified);
     		}
-    		return $this->apiResponse->sendResponse(500,'unable to add records.','');
+    		return $this->apiResponse->sendResponse(500,'unable to add records.',$verified);
     	}
     	catch(Exception $e){
     		return $this->apiResponse->sendResponse(500,'Internal server error.','');
@@ -78,11 +84,12 @@ class DriverPaymentController extends Controller
     public function update_payment(Request $request){
     	try{
     		$id = $request->user()->id;
+            $verified['verified'] = $request->user()->verified;
     		$payment = DriverPayment::where(['user_id'=>$id])->update($request->all());
     		if($payment){
-                return $this->apiResponse->sendResponse(200,'All values updated.','');
+                return $this->apiResponse->sendResponse(200,'All values updated.',$verified);
     		}
-            return $this->apiResponse->sendResponse(400,'unable to update records.','');
+            return $this->apiResponse->sendResponse(400,'unable to update records.',$verified);
     	}
     	catch(Exception $e){
             return $this->apiResponse->sendResponse(500,'Internal server error.','');
@@ -98,31 +105,38 @@ class DriverPaymentController extends Controller
             }
             if($id==1){
                 $json_data = [
-                    '16-12-2017' => [
+                    [
+                        'date' => '16-12-2017',
                         'transaction_id'=>'4345b3453e4535b',
                         'earnings'=>'28.38'
                     ],
-                    '17-12-2017' => [
+                    [
+                        'date' => '17-12-2017',
                         'transaction_id'=>'4345b3453e4895t',
                         'earnings'=>'55.50'
                     ],
-                    '18-12-2017' => [
+                    [
+                        'date' => '18-12-2017',
                         'transaction_id'=>'1389s3453u4535b',
                         'earnings'=>'125.00'
                     ],
-                    '19-12-2017' => [
+                    [
+                        'date' => '19-12-2017',
                         'transaction_id'=>'4345b3453e9734h',
                         'earnings'=>'30.17'
                     ],
-                    '20-12-2017' => [
+                    [
+                        'date' => '20-12-2017',
                         'transaction_id'=>'4345b0172e4535b',
                         'earnings'=>'67.64'
                     ],
-                    '21-12-2017' => [
+                    [
+                        'date' => '21-12-2017',
                         'transaction_id'=>'9274b0893t4535q',
                         'earnings'=>'45.20'
                     ],
-                    '22-12-2017' => [
+                    [
+                        'date' => '22-12-2017',
                         'transaction_id'=>'4235b34553e4535',
                         'earnings'=>'98.00'
                     ],
@@ -131,11 +145,31 @@ class DriverPaymentController extends Controller
             }
             elseif($id==2){
                 $json_data = [
-                    '12-2017' => '345.65',
-                    '11-2017' => '145.23',
-                    '10-2017' => '958.67',
-                    '09-2017' => '345.40',
-                    '08-2017' => '289.50'
+                    [
+                        'date' => '12-2017',
+                        'amount' => '345.65'
+                    ],
+                    [
+                        'date' => '11-2017',
+                        'amount' => '245.65'
+                    ],
+                    [
+                        'date' => '10-2017',
+                        'amount' => '758.45'
+                    ],
+                    [
+                        'date' => '09-2017',
+                        'amount' => '834.85'
+                    ],
+                    [
+                        'date' => '08-2017',
+                        'amount' => '736.97'
+                    ],
+                    [
+                        'date' => '07-2017',
+                        'amount' => '200.45'
+                    ],
+                    
                 ];
                 return $this->apiResponse->sendResponse(200,'All values fetched.',$json_data);
             }
