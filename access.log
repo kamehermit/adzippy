@@ -1038,3 +1038,5 @@
 127.0.0.1 - - [06/Feb/2018:14:09:02 +0530] "POST /api/v1/driver/auth/password/init HTTP/1.1" 200 170 "-" "PostmanRuntime/3.0.11-hotfix.2"
 127.0.0.1 - - [06/Feb/2018:14:10:28 +0530] "POST /api/v1/driver/auth/password/init HTTP/1.1" 200 170 "-" "PostmanRuntime/3.0.11-hotfix.2"
 127.0.0.1 - - [06/Feb/2018:14:10:52 +0530] "POST /api/v1/driver/auth/password/reset HTTP/1.1" 200 175 "-" "PostmanRuntime/3.0.11-hotfix.2"
+127.0.0.1 - - [14/Feb/2018:19:48:07 +0530] "GET /api/v1/driver/auth/get/profile/8447310212 HTTP/1.1" 200 218645 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
+127.0.0.1 - - [14/Feb/2018:19:48:14 +0530] "GET /api/v1/driver/auth/get/profile/9876543210 HTTP/1.1" 200 57920 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"

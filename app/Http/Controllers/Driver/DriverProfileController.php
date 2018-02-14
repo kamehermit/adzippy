@@ -121,6 +121,7 @@ class DriverProfileController extends Controller
     public function update_picture(Request $request){
         try{
             $id = $request->user()->id;
+            $verified['verified'] = $request->user()->verified;
             /*$this->validate($request, [
                 'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);*/
@@ -143,7 +144,7 @@ class DriverProfileController extends Controller
                 $response = User::where(['id'=>$id])->update(['avatar'=>$name]);
 
                 if($response){
-                    return $this->apiResponse->sendResponse(200,'All values updated','');    
+                    return $this->apiResponse->sendResponse(200,'All values updated',$verified);    
                 }
                 return $this->apiResponse->sendResponse(400,'unable to update.','');
                 
