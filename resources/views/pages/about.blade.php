@@ -54,7 +54,7 @@
 						About Us
 					</div>
 					<div class="text">
-						<p>ADZIPPY is a lucrative concept of vehicular advertising which allows our clients' message gaining access to the brisk influx of information into the the most valued segments of the society through its high mileaged brand carriers. It is a concept which works best for promoting a particular product in a specific geographical area which  values the most to a particular advertiser. We, here at Adzippy, are committed to provide optimum yield out of each and every cabvertising campaign to our clients who can reach their target audience through our brand wagons.</p>
+						<p>Adzippy is to enable the Corporate community to promote their brands in an economical and effective manner. We want to create business value to the companies ranging from small scale SMEs to MNCs by generating brand awareness of their offerings in the targeted geographical location. We are basically adding a new dimension to the conventional OOH advertising in the Indian market. We want use cars as the advertising vehicles. We'll be using the advertisement decals on the outer surface of the cabs. Our main partners in creating value for the customers are drivers. By making use of the cab driver services, we are giving them an opportunity to earn additional income at no extra workload. All in all, we are proposing a win-win situation to all the stakeholders in the Startup. In today’s scenario, empirical evaluation of the advertisement effectiveness is a demanding task. In that direction, we are developing a novel technology called I-LIT which provides correct impression rates for our advertising campaigns. What we are offering to the advertisers is an economical and very futuristic alternative way of promotion. We are going to be the forerunner of this change in the advertising industry.</p>
 					</div>
 				</div>
 			</div>
@@ -197,11 +197,13 @@
 	  	<div class="row">
 	  		<div class="col-md-6">
 	  			<div class="overlay-content">
-				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('advertiser') }}" id="advertiser">Advertiser</a>
-				    <a href="{{ url('about') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('about') }}" id="about">About Us</a>
-				    <a href="{{ url('faq') }}" id="faqs">Faqs</a>
+				    <a href="{{ url('contact') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('faq') }}" id="faqs">FAQs</a>
+				    <a href="{{ url('blog') }}" id="about">Blog</a>
+				    
 				</div>
 	  		</div>
 	  		<div class="col-md-6 hidden-sm hidden-xs">

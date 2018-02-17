@@ -79,10 +79,14 @@ body{
 }
 .header-content .content .title{
 	padding: 5px;
-	font-size: 20pt;
+	font-size: 26pt;
+  font-weight: 700;
+  color:#000;
 }
 .header-content .content .text{
-	font-size: 12pt;
+	font-size: 20pt;
+  font-weight: 300;
+  color:#2d2d2d;
 }
 .header-content{
 	color: #0071BC;
@@ -102,8 +106,30 @@ body{
 .header-content .advertiser-btn{ 
 	margin-bottom: 20px;  
 }
+.header-content .btn-title{
+  padding: 5px;
+  margin:30px 30px 0px 30px;
+  font-size: 20px;
+  font-weight: 300;
+  color:#000;
+}
+.header-content .btn-style{
+  padding: 5px;
+  margin:10px 0px 50px 30px;
+}
+.header-content .btn-style a{
+
+  border-radius: 100px;
+  background-color: #0071BC;
+  color:#fff;
+}
+.header-content .btn-style a:hover{
+  border-radius: 100px;
+  background-color: #fff;
+  color:#0071BC;
+}
 .carousel-inner {
-   margin-bottom:20px;
+  margin-bottom:20px;
 }
 .carousel-indicators {
   bottom:-50px;
@@ -172,10 +198,18 @@ body {
 	margin-left: 10px; 
 	margin-right: 10px;
 	background-color: #fff;
-	color: #0071BC; 
-	padding: 10px 10px 10px 20px;
+	color: #2d2d2d; 
+	padding: 15px 15px 15px 25px;
 	border-radius: 1%;
 	font-size: 12pt;
+  font-weight: 400;
+}
+.hero__title .card h1{
+  font-weight: 300;
+}
+.hero__title .card hr{
+  border: 2px solid #0071bc;
+  margin-right: 75%;
 }
 
 .gps-bg {
@@ -279,14 +313,22 @@ body {
 	padding: 10px;
 }
 .works .work-text{
-	color: #0071BC;
+	color: #2d2d2d;
 	margin-bottom: 30px;
+}
+.works .work-text .title h1{
+  font-weight: 300;
+}
+.works .work-text .title hr{
+  border: 2px solid #0071bc;
+  margin-right: 75%;
 }
 .works .work-text .content{
 	font-size: 12pt; 
 }
 .features{
-	margin: 30px 0px 30px 0px; 
+	margin: 30px 0px 30px 0px;
+  padding-bottom: 30px; 
 	background-color: #0071BC;
 	text-align: center;
 	color: #fff;
@@ -299,9 +341,11 @@ body {
 	padding: 10px;
 	margin: 10px 10px 10px 10px; 
 }
+.features .content{ 
+}
 .testimonials{
 	text-align: center;
-	color:#0071BC;
+	color:#2d2d2d;
 	margin: 10px 10px 40px 10px; 
 }
 .testimonials .start-quote{

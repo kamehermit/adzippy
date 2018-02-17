@@ -21,3 +21,6 @@ Route::get('driver',['as'=>'driver','uses'=>'PageController@driver']);
 Route::get('advertiser',['as'=>'advertiser','uses'=>'PageController@advertiser']);
 Route::get('about',['as'=>'about','uses'=>'PageController@about']);
 Route::get('faq',['as'=>'faq','uses'=>'PageController@faq']);
+Route::get('signup',['as'=>'signup','uses'=>'PageController@signup']);
+Route::get('blog',['as'=>'blog','uses'=>'PageController@blog']);
+Route::get('contact',['as'=>'contact','uses'=>'PageController@contact']);

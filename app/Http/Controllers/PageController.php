@@ -25,4 +25,16 @@ class PageController extends Controller
     public function faq(){
     	return view('pages.faq');
     }
+
+    public function blog(){
+        return view('pages.blog');
+    }
+
+    public function signup(){
+        return view('pages.signup');
+    }
+
+    public function contact(){
+        return view('pages.contact');
+    }
 }

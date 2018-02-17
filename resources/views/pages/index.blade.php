@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/style.css') }}">
 
 	<!--Fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
 	<!--Scripts-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -78,7 +78,7 @@
 										<b>SMART ADVERTISING</b>
 									</div>
 									<div class="title">
-										ADZIPPY
+										<span style="color:#0071bc;">AD</span>ZIPPY
 									</div>
 									<div class="text">
 										<p>Gone are the days of dependance, feel your independence with Adzippy.</p>
@@ -88,15 +88,29 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-1"></div>
-							<div class="col-md-6" align="center">
+							<div class="col-md-12">
+								<div class="btn-title">
+									Join us as a ...
+								</div>
+							</div>
+							<!-- <div class="col-md-6" align="center">
 								<a href="{{ url('driver') }}" class="btn btn-block driver-btn">
 									DRIVER
 								</a>
-							</div>
+							</div> -->
 							
 						</div>
-						<br>
+						<div class="row">
+							
+							<div class="col-xs-12">
+								<div class="btn-style">
+								<a class="btn btn-default btn-lg">Driver</a>	
+								<a class="btn btn-default btn-lg">Advertiser</a>	
+								</div>
+								
+							</div>
+						</div>
+						<!-- <br>
 						<div class="row">
 							<div class="col-md-1"></div>
 							<div class="col-md-6" align="center">
@@ -105,7 +119,7 @@
 								</a>
 							</div>
 							
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -128,11 +142,9 @@
 							<div class="row">
 								<div class="col-md-4">
 									<h1>What is Adzippy?</h1>
-									<p>Adzippy provides the drivers an extra way to earn money by advertising in and/or outside their cars through removable advertisements and leaflets.</p>
-									<p>
-										We also provide a medium through which advertisers could create ad campaigns and reach deeper into
-										the specific demographic and location.
-									</p>
+									<hr>
+									<p>ADZIPPY is a lucrative concept of vehicular advertising which allows our clients' message gaining access to the brisk influx of information into the most valued segments of the society through its high mileage brand carriers. It is a concept which works best for promoting a particular product in a specific geographical area which values the most to a particular advertiser. We, here at Adzippy, are committed to providing optimum yield out of each and every cabvertising campaign to our clients who can reach their target audience through our brand wagons.</p>
+									
 									<br>
 								</div>
 							</div>
@@ -152,6 +164,7 @@
 					<div class="work-text">
 						<div class="title">
 							<h1>How it all works</h1>
+							<hr>
 						</div>
 						<div class="content">
 							<p>
@@ -193,17 +206,17 @@
 					<div class="col-md-4" align="center">
 						<img src="{{ URL::asset('/images/eye-01.png')}}" class="img-responsive" >
 						<b>Dynamic mode of mass appeals</b>
-						<p>adasdasda asdasd asdasdgfg ddfgdfgwe<br> werw tytyr apqw rombn aljf</p>
+						<p>Your Brand don’t need to wait for masses to pass through rather it will reach to masses directly</p>
 					</div>
 					<div class="col-md-4" align="center">
 						<img src="{{URL::asset('/images/time-01.png')}}" class="img-responsive">
 						<b>Round the Clock City wide Reach </b>
-						<p>adasdasda asdasd asdasdgfg ddfgdfgwe <br>werw tytyr apqw rombn aljf</p>
+						<p>When cities don’t sleep, How can your brand promotion ! </p>
 					</div>
 					<div class="col-md-4" align="center">
 						<img src="{{ URL::asset('/images/money-01.png')}}" class="img-responsive">
 						<b>Maximum Value at best price in Industry</b>
-						<p>adasdasda asdasd asdasdgfg ddfgdfgwe <br>werw tytyr apqw rombn aljf</p>
+						<p>Live Tracking, Data Analysis etc. and that too at most competitive price makes Adzippy every cabvertiser’s  first choice</p>
 					</div>
 				</div>
 				<br>
@@ -211,17 +224,17 @@
 					<div class="col-md-4" align="center">
 						<img src="{{ URL::asset('/images/graph-01.png') }}" class="img-responsive">
 						<b>Data Analytics for your Impressions</b>
-						<p>asdads sfgsdf asdas SDASF EGGD AASasdas <br> aad 3w wrerg sdvasd qerq</p>	
+						<p>We don’t just provide the impressions for analysis but also analyze them to help you create favorable impression</p>	
 					</div>
 					<div class="col-md-4" align="center">
 						<img src="{{ URL::asset('/images/call-01.png') }}" class="img-responsive">
 						<b>Specialised Support Serices</b>
-						<p>adasdasda asdasd asdasdgfg ddfgdfgwe <br>werw tytyr apqw rombn aljf</p>
+						<p>Best in Industry Support Services keep your brand get going smoothly</p>
 					</div>
 					<div class="col-md-4" align="center">
 						<img src="{{ URL::asset('/images/tech-01.png') }}" class="img-responsive">
 						<b>Innovative impression technology </b>
-						<p>adasdasda asdasd asdasdgfg ddfgdfgwe <br>werw tytyr apqw rombn aljf</p>
+						<p>Innovative Live Impression Technology lets you have real time results of your advertising campaign.</p>
 					</div>
 				</div>
 				<br>
@@ -234,7 +247,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="title">
-						<h1>Testimonials</h1>
+						<h1>Our Customers</h1>
 					</div>
 				</div>
 			</div>
@@ -417,11 +430,12 @@
 	  	<div class="row">
 	  		<div class="col-md-6">
 	  			<div class="overlay-content">
-				    <a href="{{ url('driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('advertiser') }}" id="advertiser">Advertiser</a>
-				    <a href="{{ url('about') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('about') }}" id="about">About Us</a>
-				    <a href="{{ url('faq') }}" id="faqs">Faqs</a>
+				    <a href="{{ url('contact') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('faq') }}" id="faqs">FAQs</a>
+				    <a href="{{ url('blog') }}" id="about">Blog</a>
 				</div>
 	  		</div>
 	  		<div class="col-md-6 hidden-sm hidden-xs">

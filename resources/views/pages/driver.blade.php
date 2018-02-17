@@ -230,11 +230,12 @@
 	  	<div class="row">
 	  		<div class="col-md-6">
 	  			<div class="overlay-content">
-				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('advertiser') }}" id="advertiser">Advertiser</a>
-				    <a href="{{ url('about') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('/driver') }}" id="driver">Driver</a>
 				    <a href="{{ url('about') }}" id="about">About Us</a>
-				    <a href="{{ url('faq') }}" id="faqs">Faqs</a>
+				    <a href="{{ url('contact') }}" id="contactus">Contact Us</a>
+				    <a href="{{ url('faq') }}" id="faqs">FAQs</a>
+				    <a href="{{ url('blog') }}" id="about">Blog</a>
 				</div>
 	  		</div>
 	  		<div class="col-md-6 hidden-sm hidden-xs">

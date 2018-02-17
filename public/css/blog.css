@@ -9,11 +9,6 @@ body{
   	-moz-background-size: cover;
   	-o-background-size: cover;
 }
-@media (max-width: 786px){
-.footer {
-  text-align:center;
-}
-}
 .narbar{
 	margin: 10px;
 	padding: 10px;
@@ -149,6 +144,51 @@ body{
 	background-color: #fff;
 	color: #0071BC;
 }
+.content{
+	margin-top: 40px;
+	margin-bottom: 40PX;
+}
+.content .dateblock{
+	width: auto;
+	
+	padding: 15px;
+	margin: 15px;
+	text-align: left;
+	border-left: 2px solid;
+	border-color: #0071BC;
+}
+.content .dateblock .date{
+	font-size: 40px;
+	font-weight: 300;
+}
+.content .dateblock .month{
+	font-size: 18px;
+}
+.content .blog-title{
+	padding: 15px;
+	margin: 15px;
+	
+}
+.content .title{
+	padding: 10px;
+	font-size: 50px;
+	font-weight: 300;
+}
+.content .subtitle{
+	margin-top: -10px;
+	padding: 10px;
+	font-size: 18px;
+}
+.content .post{
+	padding:15px;
+	margin: 15px;
+	font-size: 20px;
+	font-weight: 300;
+}
+.content .post-footer{
+	margin:15px;
+	padding: 15px;
+}
 .footer{ 
 	background-color: #333;
 	color: #29ABE2;
@@ -171,90 +211,4 @@ body{
 }
 .footer .social ul li img{
 	max-width: 20px;
-}
-.works-title{
-	color: #fff;
-	margin: 0px;
-	padding: 20px; 
-	text-align: center;
-	font-size: 30pt;
-}
-.works{
-	margin-top: 20px;
-	padding: 20px;
-	background-color: #0071BC;
-}
-.content{
-	margin: 20px;
-	padding: 20px; 
-}
-.content .title{
-	margin-top: 40px; 
-	font-size: 20pt;
-	color: #2d2d2d;
-}
-.content hr{
-	border: 2px solid #0071bc;
-  	margin-right: 75%;
-}
-.content .text{
-	margin-top: 20px; 
-	font-size: 13pt;
-	color: #2d2d2d;
-}
-.image{ 	
-	width: 75%;
-	margin: auto;
-	padding: auto;
-}
-.section1 .image{
-	width: 75%;
-	margin: auto;
-	padding: auto;
-	margin-top: -30px;
-}
-.section1 .text{
-	margin-top: 50px; 
-	font-size: 16pt;
-	color: #fff;
-	font-weight: 300;
-}
-.ilit{
-	margin: 10px;
-	padding: 10px;
-}
-.ilit .image{
-	margin:auto;
-	padding: auto;
-}
-.ilit .content .title{
-	font-size: 20pt;
-	color: #2d2d2d;
-}
-.ilit .content .text{
-	font-size: 13pt;
-	color: #2d2d2d;
-}
-.ilit .content hr{
-	border: 2px solid #0071bc;
-  	margin-right: 75%;
-}
-.blue-banner{
-	background-color: #0071BC;
-	padding: 20px;
-	text-align: center;
-}
-.download-app-dwn, .download-app-dwn:visited, .download-app-dwn:active{
-	margin: 25px;
-	padding: 10px;
-	border: 3px solid;
-	border-color: #fff;
-	border-radius: 5px;
-	width: auto;
-	color: #fff;
-	font-size: 25px; 
-}
-.download-app-dwn:hover{
-	background-color: #fff;
-	color: #0071BC;
 }
