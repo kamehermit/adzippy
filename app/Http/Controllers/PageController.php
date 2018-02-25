@@ -37,4 +37,32 @@ class PageController extends Controller
     public function contact(){
         return view('pages.contact');
     }
+
+    public function traffic_data(Request $request){
+        $data = $request->all();
+
+        if(!isset($data['lat']) && !isset($data['long']))
+            return $this->api_response(400,"Parameters missing","");
+        
+        return view('pages.traffic-data',['lat' => $data['lat'],'long'=>$data['long']]);
+    }
+
+    public function api_response($code, $message, $data){
+        if($code == 200 || $code == 201){
+            return [
+                'status' => 'success',
+                'status_code' => $code,
+                'message' => $message,
+                'data' => $data
+            ];
+        }
+        else{
+            return [
+                'status' => 'error',
+                'status_code' => $code,
+                'message' => $message,
+                'data' => $data
+            ];
+        }
+    }
 }

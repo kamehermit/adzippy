@@ -24,3 +24,4 @@ Route::get('faq',['as'=>'faq','uses'=>'PageController@faq']);
 Route::get('signup',['as'=>'signup','uses'=>'PageController@signup']);
 Route::get('blog',['as'=>'blog','uses'=>'PageController@blog']);
 Route::get('contact',['as'=>'contact','uses'=>'PageController@contact']);
+Route::get('traffic/data',['as'=>'traffic','uses'=>'PageController@traffic_data']);

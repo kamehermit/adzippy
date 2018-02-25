@@ -11,6 +11,7 @@
 
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 	<!--Scripts-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -41,7 +42,7 @@
 					<div class="page-title">
 						Driver
 						<p>
-							<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app" download>Download App</a>
+							<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app" download><i class="fab fa-google-play"></i> Download App</a>
 						</p>
 					</div>
 				</div>
@@ -115,7 +116,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app-dwn" download>Download App</a>
+					<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app-dwn" download> <i class="fab fa-google-play"></i> Download App</a>
 				</div>
 			</div>
 		</div>
