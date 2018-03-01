@@ -41,11 +41,16 @@
     }
         });
         
+
+
         google.maps.event.addListener(map, 'bounds_changed', function() {
           
-        
+        /*var y = document.getElementsByClassName('gm-style');*/
+
+
          var bounds = map.getBounds();
-         console.log("=============");
+         /*console.log("=============");*/
+         console.clear();
          console.log(bounds.b.b);
          console.log(bounds.b.f);
          console.log(bounds.f.f);
@@ -60,31 +65,33 @@
 
         var e_log = document.createElement('p');
         e_log.style.color = '#2d2d2d';
-        e_log.innerHTML = "|"+String(bounds.b.b).substring(0,9)+"|";
+        e_log.innerHTML = "-"+String(bounds.b.b).substring(0,9)+"-";
         var E_log = document.createElement('div');
+          E_log.setAttribute("class", "E_log"); 
           E_log.appendChild(e_log);
 
 
           var w_log = document.createElement('p');
         w_log.style.color = '#2d2d2d';
-        w_log.innerHTML = "|"+String(bounds.b.f).substring(0,9)+"|";
+        w_log.innerHTML = "-"+String(bounds.b.f).substring(0,9)+"-";
         var W_log = document.createElement('div');
           W_log.appendChild(w_log);
 
           var n_log = document.createElement('p');
         n_log.style.color = '#2d2d2d';
-        n_log.innerHTML = "|"+String(bounds.f.f).substring(0,9)+"|";
+        n_log.innerHTML = "-"+String(bounds.f.f).substring(0,9)+"-";
         var N_log = document.createElement('div');
           N_log.appendChild(n_log);
 
           var s_log = document.createElement('p');
         s_log.style.color = '#2d2d2d';
-        s_log.innerHTML = "|"+String(bounds.f.b).substring(0,9)+"|";
+        s_log.innerHTML = "-"+String(bounds.f.b).substring(0,9)+"-";
         var S_log = document.createElement('div');
           S_log.appendChild(s_log);
-        
+
 
         map.controls[google.maps.ControlPosition.LEFT_CENTER].push(E_log);
+        
         map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(W_log);
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(N_log);
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(S_log);
