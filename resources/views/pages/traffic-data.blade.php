@@ -60,7 +60,7 @@
     </style>
   </head>
   <body>
-    <div class="coordinates" hidden>
+    <div class="coordinates">
       <div id="tl">
         
       </div>
