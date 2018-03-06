@@ -3232,3 +3232,6 @@
 127.0.0.1 - - [02/Mar/2018:15:57:26 +0530] "GET /traffic/data?lat=28.713668&long=77.142763 HTTP/1.1" 200 5934 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
 127.0.0.1 - - [02/Mar/2018:16:02:25 +0530] "GET /traffic/data?lat=28.713668&long=77.142763 HTTP/1.1" 200 6208 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
 127.0.0.1 - - [02/Mar/2018:16:04:29 +0530] "GET /traffic/data?lat=28.713668&long=77.142763 HTTP/1.1" 200 6208 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
+127.0.0.1 - - [06/Mar/2018:15:13:16 +0530] "GET /traffic/data?lat=28.713668&long=77.142763 HTTP/1.1" 200 6236 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
+127.0.0.1 - - [06/Mar/2018:15:13:20 +0530] "GET /favicon.ico HTTP/1.1" 200 0 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
+127.0.0.1 - - [06/Mar/2018:15:24:30 +0530] "GET /traffic/data?lat=28.713668&long=77.142763 HTTP/1.1" 200 6236 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"

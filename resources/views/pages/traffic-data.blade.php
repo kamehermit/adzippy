@@ -22,6 +22,7 @@
         padding: 0;
       }
       .coordinates{
+        visibility: hidden;
         position: relative;
         z-index: 100;
         height: 100vh;
