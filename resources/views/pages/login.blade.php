@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!--Custom Stylesheet-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/contact.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/advertiser-login.css') }}">
 
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
@@ -39,21 +39,21 @@
 		<div class="signup">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 graphics">
+					<div class="col-md-6 graphics">
 						<div class="title">
-							Reach Us
+							Ready to lift off...
 						</div>
 						<div class="image" align="center">
-							<img src="{{ URL::asset('/images/contact-01.png') }}" class="img-responsive">
+							<img src="{{ URL::asset('/images/launch-01.png') }}" class="img-responsive">
 						</div>
 						<div class="sub-title">
 							
 						</div>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-6">
 						<div class="signup-form">
 							<div class="title">
-								Contact Us
+								Login
 							</div>
 							<hr>
 							@if($errors)
@@ -71,28 +71,27 @@
 									@endforeach
 								@endif
 							@endif
-							{!! Form::open(array('route' => 'contactAuth','method'=>'POST')) !!}
+							{!! Form::open(array('route' => 'loginAuth','method'=>'POST')) !!}
 								<div class="form-group">
-									<label for="name">Organization Name :</label>
-									{!! Form::text('name', null, array('class' => 'form-control','placeholder'=>'Name','id'=>'name')) !!}
+									<label for="email">Email :</label>
+									{!! Form::text('email', null, array('class' => 'form-control  name','placeholder'=>'Email','id'=>'email')) !!}
 								</div>
 								<div class="form-group">
-									<label for="email">Email Address :</label>
-									{!! Form::text('email', null, array('class' => 'form-control','placeholder'=>'Email','id'=>'email')) !!}
+									<label for="password">Password :</label>
+									{!! Form::password('password', array('class' => 'form-control  email','placeholder'=>'Password','id'=>'password')) !!}
 								</div>
-								<div class="form-group">
-									<label for="message">Message :</label>
-									{!! Form::textarea('message', null, array('class' => 'form-control','placeholder'=>'Message','id'=>'message','rows'=>'4')) !!}
-								</div>
-								{!! app('captcha')->render(); !!}
 									
-  								{!! Form::submit('&nbsp;Send&nbsp;', array('class' => 'btn btn-primary','name'=>'send','id'=>'send')) !!}
+									<!-- {!! app('captcha')->render(); !!} -->
+									
+  								{!! Form::submit('&nbsp;&nbsp;Login in&nbsp;&nbsp;', array('class' => 'btn btn-primary','name'=>'login','id'=>'login')) !!}
 
   									
   							{!! Form::close() !!}
+  							<br>
+  							<hr>
 							<!-- <form action="#">
 								<div class="form-group">
-								    <label for="email">Name :</label>
+								    <label for="email">Organization Name :</label>
 								    <input type="email" class="form-control" id="email">
 								  </div>
 								  <div class="form-group">
@@ -100,10 +99,13 @@
 								    <input type="email" class="form-control" id="email">
 								  </div>
 								  <div class="form-group">
-								    <label for="email">Message:</label>
-								    <textarea class="form-control" rows="4"></textarea> 
+								    <label for="email">Advertisement Budget:</label>
+								    <input type="email" class="form-control" id="email">
 								  </div>
-								  
+								  <div class="form-group">
+								    <label for="email">Advertisement Duration:</label>
+								    <input type="email" class="form-control" id="email">
+								  </div>
 								  <button type="submit" class="btn btn-primary">Submit</button>
 							</form> -->
 						</div>

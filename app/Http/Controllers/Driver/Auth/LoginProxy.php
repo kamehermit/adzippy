@@ -33,6 +33,12 @@ class LoginProxy extends Controller
     public function attemptLogin($phone, $password){
         $user = $this->userRepository->where('phone', $phone)->first();
         if (!is_null($user)) {
+            $res = 1;
+            $accessTokens = $this->token($user->id);
+            foreach ($accessTokens as $accessToken) {
+                $res = $res * $this->logout($accessToken->id);
+            }
+
             return $this->proxy('password', [
                 'username' => $phone,
                 'password' => $password
@@ -96,22 +102,59 @@ class LoginProxy extends Controller
      * Logs out the user. We revoke access token and refresh token. 
      * Also instruct the client to forget the refresh cookie.
      */
-    public function logout(){
+    public function logout($accessToken){
     	try{
-    		$accessToken = $this->auth->user()->token();
+    		//$accessToken = $this->auth->user()->token();
         	$refreshToken = $this->db
             	->table('oauth_refresh_tokens')
-            	->where('access_token_id', $accessToken->id)
+            	->where('access_token_id', $accessToken)
             	->update([
                 	'revoked' => true
             	]);
-        	$accessToken->revoke();
-            return $this->apiResponse->sendResponse(200,'Token destroyed Successfully','');
+        	if($refreshToken){
+                if($this->revoke($accessToken)){
+                    return 1;
+                }    
+            }
+            return 0;
     	}
     	catch(Exception $e){
 
     	}
         
         //$this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
+    }
+
+    public function revoke($accessToken){
+        try{
+            $Token = $this->db
+                ->table('oauth_access_tokens')
+                ->where('id', $accessToken)
+                ->update([
+                    'revoked' => true
+                ]);
+            if($Token){
+                return 1;
+            }
+            return 0;
+        }
+        catch(Exception $e){
+
+        }
+    }
+
+    public function token($user_id){
+        try{
+            $token = $this->db
+                ->table('oauth_access_tokens')
+                ->where('user_id',$user_id)
+                ->where('revoked',0)
+                ->get(['id']);
+            return $token;
+        }
+        catch(Exception $e){
+
+        }
+        
     }
 }

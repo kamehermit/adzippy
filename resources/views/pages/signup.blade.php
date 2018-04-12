@@ -56,7 +56,45 @@
 								Sign Up
 							</div>
 							<hr>
-							<form action="#">
+							@if($errors)
+								@if(count($errors))
+									@foreach($errors->all() as $error)
+										<div class="alert alert-info alert-dismissible" role="alert">
+											<font style="font-size: 12px; padding: 0px; margin : 0px;">
+												{{ $error }}
+												</font>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+												
+											</button>
+										</div>
+									@endforeach
+								@endif
+							@endif
+							{!! Form::open(array('route' => 'loginAuth','method'=>'POST')) !!}
+								<div class="form-group">
+									<label for="name">Organization Name :</label>
+									{!! Form::text('name', null, array('class' => 'form-control','placeholder'=>'Name','id'=>'name')) !!}
+								</div>
+								<div class="form-group">
+									<label for="email">Email Address :</label>
+									{!! Form::text('email', null, array('class' => 'form-control','placeholder'=>'Email','id'=>'email')) !!}
+								</div>
+								<div class="form-group">
+									<label for="budget">Advertisement Budget:</label>
+									{!! Form::text('budget', null, array('class' => 'form-control','placeholder'=>'Advertisement Budget','id'=>'budget')) !!}
+								</div>
+								<div class="form-group">
+								    <label for="duration">Advertisement Duration:</label>
+								    {!! Form::text('duration', null, array('class' => 'form-control','placeholder'=>'Advertisement Duration','id'=>'duration')) !!}
+								  </div>
+								{!! app('captcha')->render(); !!}
+									
+  								{!! Form::submit('&nbsp;Submit&nbsp;', array('class' => 'btn btn-primary','name'=>'submit','id'=>'submit')) !!}
+
+  									
+  							{!! Form::close() !!}
+							<!-- <form action="#">
 								<div class="form-group">
 								    <label for="email">Organization Name :</label>
 								    <input type="email" class="form-control" id="email">
@@ -74,7 +112,7 @@
 								    <input type="email" class="form-control" id="email">
 								  </div>
 								  <button type="submit" class="btn btn-primary">Submit</button>
-							</form>
+							</form> -->
 						</div>
 					</div>
 				</div>

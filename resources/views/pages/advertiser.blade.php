@@ -41,7 +41,7 @@
 					<div class="page-title">
 						Advertiser
 						<p>
-							<a href="{{ url('signup') }}" class="btn dashboard-btn">Get Started</a>
+							<a href="{{ url('advertiser/register') }}" class="btn dashboard-btn">Get Started</a>
 						</p>
 					</div>
 				</div>
@@ -175,7 +175,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{ url('signup') }}" class="btn download-app-dwn">Get Started</a>
+					<a href="{{ url('advertiser/register') }}" class="btn download-app-dwn">Get Started</a>
 				</div>
 			</div>
 		</div>

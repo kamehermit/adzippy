@@ -28,6 +28,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static $contact_validation_rules = [
+        'name' => 'required',
+        'email' => 'required|email',
+        'message' => 'required',
+        'g-recaptcha-response' => 'required|captcha',
+    ];
+
     public function roles(){
       return $this
         ->belongsToMany('App\Role')

@@ -83,11 +83,21 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         try{
-            #$accessToken = $request->get('access_token');
-            #$response = $this->loginProxy->logout();
-            #return $response;
-            $var = $request->user();
-            return $var;
+            $response = 1;
+            $user_id = $request->user()->id;
+            $accessTokens = $this->loginProxy->token($user_id);
+            foreach ($accessTokens as $accessToken) {
+                $response = $response * $this->loginProxy->logout($accessToken->id);
+            }
+            if($response){
+                return $this->apiResponse->sendResponse(200,'Token successfully destroyed',$this->json_data);
+            }
+            return $this->apiResponse->sendResponse(500,'Internal server error',$this->json_data);
+            //$accessToken = $request->get('access_token');
+            //$response = $this->loginProxy->logout($accessToken);
+            //return $response;
+            //$var = $request->user();
+            //return $var;
             /*$accessToken = $request->user()->token();
             $refreshToken = \DB::
                 table('oauth_refresh_tokens')

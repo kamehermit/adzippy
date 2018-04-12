@@ -17,6 +17,8 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
     protected $driverauthnamespace = 'App\Http\Controllers\Driver\Auth';
     protected $drivernamespace = 'App\Http\Controllers\Driver';
+    protected $advertiserauthnamespace = 'App\Http\Controllers\Advertiser\Auth';
+    protected $advertisernamespace = 'App\Http\Controllers\Advertiser';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -44,6 +46,9 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapPublicDriverAuthRoutes();
         $this->mapProtectedDriverAuthRoutes();
         $this->mapProtectedDriverApiRoutes();
+
+        $this->mapPublicAdvertiserRoutes();
+        $this->mapProtectedAdvertiserRoutes();
 
         //
     }
@@ -107,5 +112,25 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware(['auth:api','user.verify'])
              ->namespace($this->drivernamespace)
              ->group(base_path('routes/Driver/protected_routes.php'));
+    }
+
+    /**
+     * All public routes under the Advertiser Domain
+     */
+    protected function mapPublicAdvertiserRoutes(){
+        Route::prefix('advertiser/')
+             ->middleware(['web','csrf'])
+             ->namespace($this->advertisernamespace)
+             ->group(base_path('routes/Advertiser/public_routes.php'));
+    }
+
+    /**
+     * All public routes under the Advertiser Domain
+     */
+    protected function mapProtectedAdvertiserRoutes(){
+        Route::prefix('advertiser/')
+             ->middleware(['web','csrf','auth'])
+             ->namespace($this->advertisernamespace)
+             ->group(base_path('routes/Advertiser/protected_routes.php'));
     }
 }

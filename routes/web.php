@@ -21,7 +21,11 @@ Route::get('driver',['as'=>'driver','uses'=>'PageController@driver']);
 Route::get('advertiser',['as'=>'advertiser','uses'=>'PageController@advertiser']);
 Route::get('about',['as'=>'about','uses'=>'PageController@about']);
 Route::get('faq',['as'=>'faq','uses'=>'PageController@faq']);
-Route::get('signup',['as'=>'signup','uses'=>'PageController@signup']);
+Route::get('advertiser/register',['as'=>'signup','uses'=>'PageController@signup']);
 Route::get('blog',['as'=>'blog','uses'=>'PageController@blog']);
 Route::get('contact',['as'=>'contact','uses'=>'PageController@contact']);
+Route::post('contact',['as'=>'contactAuth','uses'=>'Advertiser\AuthController@contact']);
+
 Route::get('traffic/data',['as'=>'traffic','uses'=>'PageController@traffic_data']);
+
+Route::post('traffic/data/{key}',['as'=>'traffic.data','uses'=>'CampaignController@traffic_data']);

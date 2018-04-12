@@ -18,5 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(DriverPaymentTableSeeder::class);
         $this->call(DriverVehicleTableSeeder::class);
         $this->call(DriverWorkingDesigTableSeeder::class);
+        $this->call(CampaignTableSeeder::class);
+        $this->call(CampaignTableSeeder::class);
+        $this->call(CampaignDriverTableSeeder::class);
+        $this->call(CampaignAdvertiserTableSeeder::class);
     }
 }

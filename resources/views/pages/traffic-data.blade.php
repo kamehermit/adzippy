@@ -124,16 +124,16 @@
         e_log.style.color = '#2d2d2d';
         e_log.innerHTML = "-"+String(bounds.b.b).substring(0,9)+"-";*/
         var E_log = document.getElementById('ll');
-        E_log.innerHTML = String(bounds.b.b).substring(0,9);
+        E_log.innerHTML = String(bounds.b.b).substring(0,11);
 
         var W_log = document.getElementById('rl');
-        W_log.innerHTML = String(bounds.b.f).substring(0,9);
+        W_log.innerHTML = String(bounds.b.f).substring(0,11);
 
         var N_log = document.getElementById('tl');
-        N_log.innerHTML = String(bounds.f.f).substring(0,9);
+        N_log.innerHTML = String(bounds.f.f).substring(0,11);
 
         var S_log = document.getElementById('bl');
-        S_log.innerHTML = String(bounds.f.b).substring(0,9);
+        S_log.innerHTML = String(bounds.f.b).substring(0,11);
         /*var E_log = document.createElement('div');
           E_log.setAttribute("class", "E_log"); 
           E_log.appendChild(e_log);*/
