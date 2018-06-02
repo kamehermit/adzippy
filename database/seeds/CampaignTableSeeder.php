@@ -18,6 +18,7 @@ class CampaignTableSeeder extends Seeder
         	'start_date' => '2018-03-17 00:00:00',
         	'end_date' => '2018-05-20 00:00:00',
         	'amount' => '100000.00',
+            'balance' => '100000.00',
         	'enabled' => 1
         ];
         DB::table('campaigns')->insert($data);

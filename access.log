@@ -4064,3 +4064,4 @@
 127.0.0.1 - - [20/May/2018:15:19:28 +0530] "GET /favicon.ico HTTP/1.1" 200 0 "http://adzippy.dev/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
 127.0.0.1 - - [02/Jun/2018:16:19:52 +0530] "POST /traffic/data/aksh89dsbsd09bs HTTP/1.1" 200 91 "-" "PostmanRuntime/3.0.11-hotfix.2"
 127.0.0.1 - - [02/Jun/2018:16:20:49 +0530] "POST /traffic/data/aksh89dsbsd09bs HTTP/1.1" 200 91 "-" "PostmanRuntime/3.0.11-hotfix.2"
+127.0.0.1 - - [02/Jun/2018:16:37:10 +0530] "POST /traffic/data/aksh89dsbsd09bs HTTP/1.1" 200 91 "-" "PostmanRuntime/3.0.11-hotfix.2"
