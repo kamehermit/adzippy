@@ -20,7 +20,8 @@ class CreateCampaignsTable extends Migration
             $table->string('image');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->decimal('amount', 9, 2);
+            $table->decimal('amount',9,2);
+            $table->decimal('balance',9,2);
             $table->boolean('enabled')->default(0);
             $table->timestamps();
         });

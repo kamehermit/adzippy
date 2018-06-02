@@ -20,6 +20,7 @@ class CreateDriverEarningsTable extends Migration
             $table->integer('views')->unsigned();
             $table->dateTime('date');
             $table->decimal('amount', 5, 2);
+            $table->decimal('distance',5,2);
             $table->timestamps();
         });
         Schema::table('driver_earnings',function($table){
