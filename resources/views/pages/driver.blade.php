@@ -116,7 +116,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app-dwn" download> <i class="fab fa-google-play"></i> Download App</a>
+					<a href="https://play.google.com/store/apps/details?id=com.dubey.sanjeev.adzippy" class="btn download-app-dwn" download> <i class="fab fa-google-play"></i> Download App</a>
 				</div>
 			</div>
 		</div>

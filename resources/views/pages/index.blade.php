@@ -75,7 +75,7 @@
 							<div class="col-md-12">
 								<div class="content">
 									<div class="subtitle">
-										<b>SMART ADVERTISING</b>
+										<b>SMART ADVERTISING WITH</b>
 									</div>
 									<div class="title">
 										<span style="color:#0071bc;">AD</span>ZIPPY
@@ -144,7 +144,7 @@
 								<div class="col-md-4">
 									<h1>What is Adzippy?</h1>
 									<hr>
-									<p>ADZIPPY is a lucrative concept of vehicular advertising which allows our clients' message gaining access to the brisk influx of information into the most valued segments of the society through its high mileage brand carriers. It is a concept which works best for promoting a particular product in a specific geographical area which values the most to a particular advertiser. We, here at Adzippy, are committed to providing optimum yield out of each and every cabvertising campaign to our clients who can reach their target audience through our brand wagons.</p>
+									<p>ADZIPPY is a lucrative concept of vehicular advertising which allows our clients' message gaining access to the brisk influx of information into the most valued segments of the society through its high mileage brand carriers. It is a concept which works best for promoting a particular product in a specific geographical area which values the most to a particular advertiser. <!-- We, here at Adzippy, are committed to providing optimum yield out of each and every cabvertising campaign to our clients who can reach their target audience through our brand wagons. --></p>
 									
 									<br>
 								</div>
