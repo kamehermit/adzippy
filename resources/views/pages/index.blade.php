@@ -104,8 +104,9 @@
 							
 							<div class="col-xs-12">
 								<div class="btn-style">
-								<a class="btn btn-default btn-lg">Driver</a>	
-								<a class="btn btn-default btn-lg">Advertiser</a>	
+								<a href="{{ url('/driver') }}" class="btn btn-default btn-lg">Driver</a>	
+								<a href="{{ url('/advertiser') }}" class="btn btn-default btn-lg">Advertiser</a>
+								<a href="{{ url('/commuter') }}" class="btn btn-default btn-lg">Commuters</a>	
 								</div>
 								
 							</div>

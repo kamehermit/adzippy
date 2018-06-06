@@ -18,6 +18,10 @@ class PageController extends Controller
     	return view('pages.advertiser');
     }
 
+    public function commuter(){
+        return view('pages.commuter');
+    }
+
     public function about(){
     	return view('pages.about');
     }

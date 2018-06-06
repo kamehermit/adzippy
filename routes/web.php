@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/',['as'=>'index','uses'=>'PageController@index']);
 Route::get('driver',['as'=>'driver','uses'=>'PageController@driver']);
 Route::get('advertiser',['as'=>'advertiser','uses'=>'PageController@advertiser']);
+Route::get('commuter',['as'=>'commuter','uses'=>'PageController@commuter']);
 Route::get('about',['as'=>'about','uses'=>'PageController@about']);
 Route::get('faq',['as'=>'faq','uses'=>'PageController@faq']);
 Route::get('advertiser/register',['as'=>'signup','uses'=>'PageController@signup']);

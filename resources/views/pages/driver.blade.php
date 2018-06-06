@@ -42,7 +42,7 @@
 					<div class="page-title">
 						Driver
 						<p>
-							<a href="{{ URL::asset('/apk/adzippy.apk') }}" class="btn download-app" download><i class="fab fa-google-play"></i> Download App</a>
+							<a href="https://play.google.com/store/apps/details?id=com.dubey.sanjeev.adzippy" class="btn download-app" download><i class="fab fa-google-play"></i> Download App</a>
 						</p>
 					</div>
 				</div>
